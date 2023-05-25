@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/dist/client/components/navigation";
 import axios from "axios";
+import Image from "next/image";
 
-export default function page() {
+export default function PageTeams() {
   const param: any = useParams();
 
   const [seasons, setSeasons] = useState(null);
@@ -91,7 +92,7 @@ export default function page() {
             Retour
           </button>
           </a> */}
-        <img
+        <Image
           src={seasons.TOURNAMENT_IMAGE}
           alt="Tournament"
           className="self-center w-32 h-32"
@@ -132,7 +133,7 @@ export default function page() {
                   {team.RANKING}
                 </td>
                 <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
-                  <img
+                  <Image
                     src={team.TEAM_IMAGE_PATH}
                     alt="Team"
                     className="w-6 sm:w-8 h-6 sm:h-8 mr-2 inline-block"

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 type FootballChampionship = {
   name: string;
@@ -123,7 +124,7 @@ const FootballList = () => {
                 <tr>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <a href={`football/${championship.stageId}`}>
-                      <img
+                      <Image
                         src={championship.image}
                         alt={championship.name}
                         className="w-8 h-8 mr-2 inline-block"
