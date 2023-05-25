@@ -102,7 +102,7 @@ const FootballList = () => {
 
   return (
     <div className="w-full mx-auto bg-gray-100">
-      <h2 className="text-lg font-bold mb-4 pt-8 text-center text-green-700 tracking-widest">
+      <h2 className="text-lg font-bold mb-4 pt-8 text-center text-green-600 tracking-widest">
         CHOISISSEZ LE CHAMPIONNAT
       </h2>
       <div className="max-w-screen-md mx-auto">
@@ -125,6 +125,8 @@ const FootballList = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <a href={`football/${championship.stageId}`}>
                       <Image
+                        width={100}
+                        height={100}
                         src={championship.image}
                         alt={championship.name}
                         className="w-8 h-8 mr-2 inline-block"
@@ -137,6 +139,7 @@ const FootballList = () => {
             ))}
           </tbody>
         </table>
+        <br />
       </div>
     </div>
   );
