@@ -15,10 +15,12 @@ const FootballList = () => {
   const [championships, setChampionships] = useState<FootballChampionship[]>(
     []
   );
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchChampionships = async () => {
       try {
+        setLoading(true); // spinner loading
         const options = {
           method: "GET",
           url: "https://flashlive-sports.p.rapidapi.com/v1/tournaments/stages",
@@ -48,20 +50,15 @@ const FootballList = () => {
         const allowedChampionships = [
           "Premier League",
           "Championship",
-          "FA Cup",
-          "EFL Cup",
           "Ligue 1",
           "Ligue 2",
           "National",
-          "Coupe de France",
           "Bundesliga",
           "2. Bundesliga",
           "Serie A",
           "Serie B",
-          "Super Coupe",
           "LaLiga",
           "LaLiga2",
-          "Coupe du Roi",
         ];
 
         const filteredChampionships = data
@@ -94,11 +91,30 @@ const FootballList = () => {
           "Erreur lors de la récupération des championnats de football :",
           error
         );
+      } finally {
+        // Fin du chargement
+        setLoading(false);
       }
     };
 
     fetchChampionships();
   }, []);
+
+  if (loading) {
+    // Remplacer 'Loading...' par votre spinner de chargement
+    return (
+      <div>
+        <br />
+        <Image
+          src="/Spin-1s-200px.gif"
+          width={100}
+          height={100}
+          alt={"spinner"}
+          className="mx-auto block"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full mx-auto bg-gray-100">

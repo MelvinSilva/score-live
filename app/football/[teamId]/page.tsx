@@ -29,6 +29,7 @@ export default function PageTeams({ params }: { params: { teamId: string } }) {
   const [teams, setTeams] = useState<Team[]>([]);
   const [seasonId, setSeasonId] = useState<number | null>(null);
   const [stageId, setStageId] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchSeasons = async () => {
@@ -65,6 +66,7 @@ export default function PageTeams({ params }: { params: { teamId: string } }) {
 
   useEffect(() => {
     const fetchTeams = async () => {
+      setLoading(true); // spinner loading
       if (!seasonId || !stageId) {
         return;
       }
@@ -91,6 +93,9 @@ export default function PageTeams({ params }: { params: { teamId: string } }) {
         setTeams(result[0].ROWS);
       } catch (error) {
         console.error("Erreur lors de la récupération des équipes", error);
+      } finally {
+        // Fin du chargement
+        setLoading(false);
       }
     };
 
@@ -98,6 +103,22 @@ export default function PageTeams({ params }: { params: { teamId: string } }) {
       fetchTeams();
     }
   }, [seasonId, stageId]);
+
+  if (loading) {
+    // Remplacer 'Loading...' par votre spinner de chargement
+    return (
+      <div>
+        <br />
+        <Image
+          src="/Spin-1s-200px.gif"
+          width={100}
+          height={100}
+          alt={"spinner"}
+          className="mx-auto block"
+        />
+      </div>
+    );
+  }
 
   if (!seasons || !teams) {
     return <div>Chargement...</div>;

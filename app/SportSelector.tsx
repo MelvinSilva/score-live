@@ -127,7 +127,9 @@ export default function SportSelector() {
             }}
           />
         </div>
-        <div className="w-1/2 ml-2 mr-4">
+        <div className="w-1/2 ml-2 mr-4 relative">
+          {" "}
+          {/* Ajout de la classe "relative" pour positionner l'icône */}
           <Select
             options={dateOptions}
             defaultValue={defaultDateOption}
@@ -139,7 +141,8 @@ export default function SportSelector() {
               IndicatorSeparator: () => null,
             }}
           />
-          <IoCalendarOutline className="absolute top-1.5 right-2 h-6 w-6 text-gray-400" />
+          <IoCalendarOutline className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 w-6 text-gray-400" />{" "}
+          {/* Ajout des classes "absolute", "right-2", "top-1/2", "transform", "-translate-y-1/2" pour positionner l'icône */}
         </div>
       </div>
       {renderSportComponent()}
