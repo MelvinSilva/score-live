@@ -138,8 +138,8 @@ const FootballList = () => {
                   </tr>
                 ) : null}
                 <tr>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <a href={`football/${championship.stageId}`}>
+                  <a href={`football/${championship.stageId}`}>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       <Image
                         width={100}
                         height={100}
@@ -148,8 +148,8 @@ const FootballList = () => {
                         className="w-8 h-8 mr-2 inline-block"
                       />
                       {championship.name}
-                    </a>
-                  </td>
+                    </td>
+                  </a>
                 </tr>
               </React.Fragment>
             ))}
