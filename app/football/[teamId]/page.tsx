@@ -14,6 +14,7 @@ interface Team {
   GOALS: number;
   POINTS: number;
   RANKING: number;
+  TUC: string;
 }
 
 interface Season {
@@ -76,7 +77,7 @@ export default function PageTeams({ params }: { params: { teamId: string } }) {
           method: "GET",
           url: "https://flashlive-sports.p.rapidapi.com/v1/tournaments/standings",
           params: {
-            standing_type: "home",
+            standing_type: "overall",
             locale: "fr_FR",
             tournament_stage_id: stageId,
             tournament_season_id: seasonId,
@@ -105,7 +106,6 @@ export default function PageTeams({ params }: { params: { teamId: string } }) {
   }, [seasonId, stageId]);
 
   if (loading) {
-    // Remplacer 'Loading...' par votre spinner de chargement
     return (
       <div>
         <br />
@@ -172,10 +172,43 @@ export default function PageTeams({ params }: { params: { teamId: string } }) {
           <tbody className="bg-white divide-y divide-gray-200">
             {teams.map((team) => (
               <tr key={team.TEAM_ID}>
-                <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
-                  {team.RANKING}
+                <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center">
+                  {team.TUC && (
+                    <div
+                      style={{
+                        backgroundColor: `#${team.TUC}`,
+                        color: "#ffffff",
+                        fontWeight: 600,
+                        borderRadius: "5px",
+                        width: "30px",
+                        height: "30px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        textAlign: "center",
+                      }}
+                    >
+                      {team.RANKING}
+                    </div>
+                  )}
+                  {!team.TUC && (
+                    <span
+                      style={{
+                        color: "#00000",
+                        borderRadius: "5px",
+                        width: "30px",
+                        height: "30px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        textAlign: "center",
+                      }}
+                    >
+                      {team.RANKING}
+                    </span>
+                  )}
                 </td>
-                <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
+                <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm">
                   <Image
                     width={100}
                     height={100}
