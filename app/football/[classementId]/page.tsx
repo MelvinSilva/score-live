@@ -57,9 +57,8 @@ export default function ClassementTournament({
   >("classement");
   const [meilleursButeurs, setMeilleursButeurs] = useState<Buteur[]>([]);
 
-  const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
-
   useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
     const fetchSeasons = async () => {
       try {
         const options = {
@@ -91,9 +90,10 @@ export default function ClassementTournament({
     };
 
     fetchSeasons();
-  }, []);
+  }, [params.classementId]);
 
   useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
     const fetchTeams = async () => {
       setLoading(true); // spinner loading
       if (!seasonId || !stageId) {
@@ -133,6 +133,7 @@ export default function ClassementTournament({
   }, [seasonId, stageId]);
 
   useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
     const fetchButeurs = async () => {
       if (!seasonId || !stageId) {
         return;
