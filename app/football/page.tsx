@@ -17,6 +17,8 @@ const FootballList = () => {
   );
   const [loading, setLoading] = useState<boolean>(true);
 
+  const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
+
   useEffect(() => {
     const fetchChampionships = async () => {
       try {
@@ -29,8 +31,7 @@ const FootballList = () => {
             locale: "fr_FR",
           },
           headers: {
-            "X-RapidAPI-Key":
-              "24bcd35a5amsh4077dfb5e327d9dp1fea1ejsndc2e6568141c",
+            "X-RapidAPI-Key": apiKey,
             "X-RapidAPI-Host": "flashlive-sports.p.rapidapi.com",
           },
         };
