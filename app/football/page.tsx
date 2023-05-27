@@ -16,9 +16,9 @@ const FootballList = () => {
     []
   );
   const [loading, setLoading] = useState<boolean>(true);
+  const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
 
   useEffect(() => {
-    const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
     const fetchChampionships = async () => {
       try {
         setLoading(true); // spinner loading
@@ -98,7 +98,7 @@ const FootballList = () => {
     };
 
     fetchChampionships();
-  }, []);
+  }, [apiKey]);
 
   if (loading) {
     // Remplacer 'Loading...' par votre spinner de chargement
