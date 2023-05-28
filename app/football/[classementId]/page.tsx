@@ -4,7 +4,6 @@ import axios from "axios";
 import Image from "next/image";
 import ClassementTable from "../classementTable/page";
 import ButeursTable from "../buteurTable/page";
-import IoReturnDownBackOutline from "react-icons/io5";
 
 interface Team {
   TEAM_ID: number;
@@ -92,7 +91,7 @@ export default function ClassementTournament({
     };
 
     fetchSeasons();
-  }, [apiKey]);
+  }, [apiKey, params.classementId]);
 
   useEffect(() => {
     const fetchTeams = async () => {
