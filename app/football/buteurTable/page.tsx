@@ -82,4 +82,4 @@ const ButeursTable: React.FC<ButeursTableProps> = ({ meilleursButeurs }) => {
   );
 };
 
-export default ButeursTable;
+export { ButeursTable };
