@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { FC } from "react";
 
 interface Buteur {
   TS_PLAYER_ID: number;
@@ -13,12 +14,10 @@ interface Buteur {
 }
 
 interface ButeursTableProps {
-  meilleursButeurs: Buteur[];
+  meilleursButeurs?: Buteur[];
 }
 
-export const ButeursTable: React.FC<ButeursTableProps> = ({
-  meilleursButeurs,
-}) => {
+const ButeursTable: FC<ButeursTableProps> = ({ meilleursButeurs }) => {
   return (
     <div className="w-full mx-auto bg-gray-100">
       <br />
@@ -41,7 +40,7 @@ export const ButeursTable: React.FC<ButeursTableProps> = ({
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {meilleursButeurs.map((buteur) => (
+            {meilleursButeurs?.map((buteur) => (
               <tr key={buteur.TS_PLAYER_ID}>
                 <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
                   {buteur.TS_RANK}
@@ -83,3 +82,5 @@ export const ButeursTable: React.FC<ButeursTableProps> = ({
     </div>
   );
 };
+
+export default ButeursTable;
