@@ -16,9 +16,7 @@ interface ButeursTableProps {
   meilleursButeurs: Buteur[];
 }
 
-export const ButeursTableComponent: React.FC<ButeursTableProps> = ({
-  meilleursButeurs,
-}) => {
+const ButeursTable: React.FC<ButeursTableProps> = ({ meilleursButeurs }) => {
   return (
     <div className="w-full mx-auto bg-gray-100">
       <br />
@@ -83,3 +81,5 @@ export const ButeursTableComponent: React.FC<ButeursTableProps> = ({
     </div>
   );
 };
+
+export default ButeursTable;
