@@ -21,7 +21,7 @@ interface ClassementTableProps {
 const ClassementTable: React.FC<ClassementTableProps> = ({ teams }) => {
   return (
     <div className="max-w-screen-md mx-auto">
-      <br />
+      <br />.
       <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
         <thead className="bg-white">
           <tr>
