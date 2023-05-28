@@ -16,7 +16,7 @@ interface ButeursTableProps {
   meilleursButeurs: Buteur[];
 }
 
-export const ButeursTable: React.FC<ButeursTableProps> = ({
+export const ButeursTableComponent: React.FC<ButeursTableProps> = ({
   meilleursButeurs,
 }) => {
   return (

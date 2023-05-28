@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import ClassementTable from "../classementTable/page";
-import { ButeursTable } from "../buteurTable/page";
+import { ButeursTableComponent } from "../buteurTable/page";
 
 interface Team {
   TEAM_ID: number;
@@ -241,7 +241,7 @@ export default function ClassementTournament({
 
       {selectedOption === "classement" && <ClassementTable teams={teams} />}
       {selectedOption === "buteurs" && (
-        <ButeursTable meilleursButeurs={meilleursButeurs} />
+        <ButeursTableComponent meilleursButeurs={meilleursButeurs} />
       )}
     </div>
   );
