@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import ClassementTableComponent from "../classementTable/page";
-import { default as ButeursTable } from "../buteurTable/page";
+import dynamic from "next/dynamic";
 
 interface Team {
   TEAM_ID: number;
@@ -45,6 +45,10 @@ export default function ClassementTournament({
 }: {
   params: { classementId: string };
 }) {
+  const ButeursTable = dynamic(
+    () => import("../buteurTable/page").then((module) => module.default),
+    { ssr: false }
+  );
   const [seasons, setSeasons] = useState<Season | null>(null);
   const [tournament, setTournament] = useState<Tournament | null>(null);
   const [teams, setTeams] = useState<Team[]>([]);
