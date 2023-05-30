@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import ClassementTableComponent from "../classementTable/page";
-import ButeursTable from "../buteurTable/page";
+import { default as ButeursTable } from "../buteurTable/page";
 
 interface Team {
   TEAM_ID: number;

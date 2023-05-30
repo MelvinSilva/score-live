@@ -17,8 +17,7 @@ interface ButeursTableProps {
   meilleursButeurs: Buteur[];
 }
 
-const ButeursTable: FC<ButeursTableProps> = (props) => {
-  const { meilleursButeurs } = props;
+const ButeursTable: FC<ButeursTableProps> = ({ meilleursButeurs }) => {
   return (
     <div className="w-full mx-auto bg-gray-100">
       <br />
