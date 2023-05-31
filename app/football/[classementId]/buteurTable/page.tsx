@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { FC } from "react";
 
-interface Buteur {
+type Buteur = {
   TS_PLAYER_ID: number;
   TS_RANK: number;
   TS_PLAYER_NAME_PA: string;
@@ -11,11 +11,11 @@ interface Buteur {
   TS_PLAYER_ASISTS: number;
   TS_IMAGE_PATH: string;
   TEAM_NAME: string;
-}
+};
 
-interface ButeursTableProps {
+type ButeursTableProps = {
   meilleursButeurs: Buteur[];
-}
+};
 
 const ButeursTable: FC<ButeursTableProps> = ({ meilleursButeurs }) => {
   return (

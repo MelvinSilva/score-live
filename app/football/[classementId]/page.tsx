@@ -5,7 +5,7 @@ import Image from "next/image";
 import ClassementTableComponent from "./classementTable/page";
 import ButeursTable from "./buteurTable/page";
 
-interface Team {
+type Team = {
   TEAM_ID: number;
   TEAM_NAME: string;
   TEAM_IMAGE_PATH: string;
@@ -15,9 +15,9 @@ interface Team {
   POINTS: number;
   RANKING: number;
   TUC: string;
-}
+};
 
-interface Buteur {
+type Buteur = {
   TS_PLAYER_ID: number;
   TS_RANK: number;
   TS_PLAYER_NAME_PA: string;
@@ -25,20 +25,20 @@ interface Buteur {
   TS_PLAYER_ASISTS: number;
   TS_IMAGE_PATH: string;
   TEAM_NAME: string;
-}
+};
 
-interface Season {
+type Season = {
   TOURNAMENT_IMAGE: string;
   SEASONS: {
     SEASON_ID: number;
     SEASON_TOURNAMENT_STAGE_ID: number;
   }[];
-}
+};
 
-interface Tournament {
+type Tournament = {
   COUNTRY_NAME: string;
   LEAGUE_NAME: string;
-}
+};
 
 export default function ClassementTournament({
   params,
