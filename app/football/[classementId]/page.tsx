@@ -216,7 +216,6 @@ export default function ClassementTournament({
       <h3 className="text-md font-bold mb-4 text-center text-green-600 tracking-widest">
         {tournament?.LEAGUE_NAME} ({tournament?.COUNTRY_NAME})
       </h3>
-
       <div className="flex justify-center mb-4">
         <button
           className={`mr-4 px-4 py-2 rounded-lg ${
