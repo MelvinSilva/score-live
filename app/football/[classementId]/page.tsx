@@ -54,8 +54,6 @@ export default function ClassementTournament({
   >("classement");
   const [meilleursButeurs, setMeilleursButeurs] = useState<Buteur[]>([]);
 
-  const apiKey = process.env.NEXT_PUBLIC_KEY;
-
   useEffect(() => {
     const fetchSeasons = async () => {
       try {
@@ -67,7 +65,7 @@ export default function ClassementTournament({
             locale: "fr_FR",
           },
           headers: {
-            "X-RapidAPI-Key": apiKey,
+            "X-RapidAPI-Key": process.env.NEXT_PUBLIC_KEY,
             "X-RapidAPI-Host": "flashlive-sports.p.rapidapi.com",
           },
         };
@@ -89,7 +87,7 @@ export default function ClassementTournament({
     };
 
     fetchSeasons();
-  }, [apiKey, params.classementId]);
+  }, [process.env.NEXT_PUBLIC_KEY, params.classementId]);
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -109,7 +107,7 @@ export default function ClassementTournament({
             tournament_season_id: seasonId,
           },
           headers: {
-            "X-RapidAPI-Key": apiKey,
+            "X-RapidAPI-Key": process.env.NEXT_PUBLIC_KEY,
             "X-RapidAPI-Host": "flashlive-sports.p.rapidapi.com",
           },
         };
@@ -128,7 +126,7 @@ export default function ClassementTournament({
     if (seasonId && stageId) {
       fetchTeams();
     }
-  }, [seasonId, stageId, apiKey]);
+  }, [seasonId, stageId, process.env.NEXT_PUBLIC_KEY]);
 
   useEffect(() => {
     const fetchButeurs = async () => {
@@ -147,7 +145,7 @@ export default function ClassementTournament({
             tournament_season_id: seasonId,
           },
           headers: {
-            "X-RapidAPI-Key": apiKey,
+            "X-RapidAPI-Key": process.env.NEXT_PUBLIC_KEY,
             "X-RapidAPI-Host": "flashlive-sports.p.rapidapi.com",
           },
         };
@@ -169,7 +167,7 @@ export default function ClassementTournament({
     if (seasonId && stageId) {
       fetchButeurs();
     }
-  }, [seasonId, stageId, apiKey]);
+  }, [seasonId, stageId, process.env.NEXT_PUBLIC_KEY]);
 
   const handleOptionChange = (option: "classement" | "buteurs") => {
     setSelectedOption(option);

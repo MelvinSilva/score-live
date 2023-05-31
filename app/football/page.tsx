@@ -16,7 +16,6 @@ const FootballList = () => {
     []
   );
   const [loading, setLoading] = useState<boolean>(true);
-  const apiKey = process.env.NEXT_PUBLIC_KEY;
 
   useEffect(() => {
     const fetchChampionships = async () => {
@@ -30,7 +29,7 @@ const FootballList = () => {
             locale: "fr_FR",
           },
           headers: {
-            "X-RapidAPI-Key": apiKey,
+            "X-RapidAPI-Key": process.env.NEXT_PUBLIC_KEY,
             "X-RapidAPI-Host": "flashlive-sports.p.rapidapi.com",
           },
         };
@@ -101,7 +100,7 @@ const FootballList = () => {
     };
 
     fetchChampionships();
-  }, [apiKey]);
+  }, [process.env.NEXT_PUBLIC_KEY]);
 
   if (loading) {
     // Remplacer 'Loading...' par votre spinner de chargement
