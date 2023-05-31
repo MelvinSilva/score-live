@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 import React from "react";
 import Image from "next/image";
 import { FC } from "react";
@@ -84,4 +84,4 @@ const ButeursTable: FC<ButeursTableProps> = ({ meilleursButeurs }) => {
 };
 
 export type { Buteur, ButeursTableProps };
-export default ButeursTable;
+export default ButeursTable; */
