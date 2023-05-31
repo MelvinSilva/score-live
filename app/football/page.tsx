@@ -30,7 +30,7 @@ const FootballList = () => {
             locale: "fr_FR",
           },
           headers: {
-            "X-RapidAPI-Key": process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY,
+            "X-RapidAPI-Key": apiKey,
             "X-RapidAPI-Host": "flashlive-sports.p.rapidapi.com",
           },
         };
