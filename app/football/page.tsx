@@ -16,7 +16,7 @@ const FootballList = () => {
     []
   );
   const [loading, setLoading] = useState<boolean>(true);
-  const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_KEY;
 
   useEffect(() => {
     const fetchChampionships = async () => {

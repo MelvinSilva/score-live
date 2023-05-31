@@ -54,10 +54,9 @@ export default function ClassementTournament({
   >("classement");
   const [meilleursButeurs, setMeilleursButeurs] = useState<Buteur[]>([]);
 
-  const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_KEY;
 
   useEffect(() => {
-    const apiKey = process.env.NEXT_PUBLIC_X_RAPIDAPI_KEY;
     const fetchSeasons = async () => {
       try {
         const options = {
