@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import ClassementTableComponent from "./classementTable/page";
+import { Buteur } from "./buteurTable/page";
 import ButeursTable from "./buteurTable/page";
 
-type Team = {
+interface Team {
   TEAM_ID: number;
   TEAM_NAME: string;
   TEAM_IMAGE_PATH: string;
@@ -15,30 +16,20 @@ type Team = {
   POINTS: number;
   RANKING: number;
   TUC: string;
-};
+}
 
-type Buteur = {
-  TS_PLAYER_ID: number;
-  TS_RANK: number;
-  TS_PLAYER_NAME_PA: string;
-  TS_PLAYER_GOALS: number;
-  TS_PLAYER_ASISTS: number;
-  TS_IMAGE_PATH: string;
-  TEAM_NAME: string;
-};
-
-type Season = {
+interface Season {
   TOURNAMENT_IMAGE: string;
   SEASONS: {
     SEASON_ID: number;
     SEASON_TOURNAMENT_STAGE_ID: number;
   }[];
-};
+}
 
-type Tournament = {
+interface Tournament {
   COUNTRY_NAME: string;
   LEAGUE_NAME: string;
-};
+}
 
 export default function ClassementTournament({
   params,
@@ -243,7 +234,7 @@ export default function ClassementTournament({
         <ClassementTableComponent teams={teams} />
       )}
       {selectedOption === "buteurs" && (
-        <ButeursTable meilleursButeurs={meilleursButeurs} />
+        <ButeursTable meilleursButeurs={meilleursButeurs as Buteur[]} />
       )}
     </div>
   );
