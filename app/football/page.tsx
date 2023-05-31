@@ -45,6 +45,7 @@ const FootballList = () => {
           "France",
           "Angleterre",
           "Espagne",
+          "Portugal",
         ];
 
         const allowedChampionships = [
@@ -59,6 +60,8 @@ const FootballList = () => {
           "Serie B",
           "LaLiga",
           "LaLiga2",
+          "Liga Portugal",
+          "Liga Portugal 2",
         ];
 
         const filteredChampionships = data
