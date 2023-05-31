@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["www.flashscore.com", "cdn.dribbble.com"],
+    domains: [
+      "www.flashscore.com",
+      "cdn.dribbble.com",
+      "st4.depositphotos.com",
+    ],
   },
 };
 

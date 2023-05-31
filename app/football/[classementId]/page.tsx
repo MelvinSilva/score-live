@@ -78,6 +78,7 @@ export default function ClassementTournament({
         const resultTournament: Tournament = response.data.DATA;
         setTournament(resultTournament);
         setSeasons(result);
+
         const season = result.SEASONS[0];
         const seasonId = season.SEASON_ID;
         const stageId = season.SEASON_TOURNAMENT_STAGE_ID;
@@ -160,6 +161,9 @@ export default function ClassementTournament({
           "Erreur lors de la récupération des meilleurs buteurs",
           error
         );
+      } finally {
+        // Fin du chargement
+        setLoading(false);
       }
     };
 
@@ -239,7 +243,7 @@ export default function ClassementTournament({
 
       {selectedOption === "classement" && (
         <div className="max-w-screen-md mx-auto">
-          <br />.
+          <br />
           <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
             <thead className="bg-white">
               <tr>
@@ -250,7 +254,7 @@ export default function ClassementTournament({
                   Équipe
                 </th>
                 <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-500 uppercase">
-                  Matchs Joués
+                  Matchs
                 </th>
                 <th className="hidden sm:table-cell px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-500 uppercase">
                   Victoires
@@ -360,13 +364,23 @@ export default function ClassementTournament({
                     <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm">
                       <div className="flex items-center">
                         <div className="mr-2">
-                          <Image
-                            width={50}
-                            height={50}
-                            src={buteur.TS_IMAGE_PATH}
-                            alt="Player"
-                            className="w-8 h-8 rounded-full"
-                          />
+                          {buteur.TS_IMAGE_PATH ? (
+                            <Image
+                              width={50}
+                              height={50}
+                              src={buteur.TS_IMAGE_PATH}
+                              alt="Player"
+                              className="w-8 h-8 rounded-full"
+                            />
+                          ) : (
+                            <Image
+                              width={50}
+                              height={50}
+                              src={"/anonymous.jpeg"}
+                              alt="Player"
+                              className="w-8 h-6 rounded-full"
+                            />
+                          )}
                         </div>
                         <div>
                           <div className="font-semibold text-gray-600">
