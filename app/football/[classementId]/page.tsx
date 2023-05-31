@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import ClassementTableComponent from "./classementTable/page";
-import { Buteur } from "./buteurTable/page";
-import ButeursTable from "./buteurTable/page";
 
 interface Team {
   TEAM_ID: number;
@@ -29,6 +27,16 @@ interface Season {
 interface Tournament {
   COUNTRY_NAME: string;
   LEAGUE_NAME: string;
+}
+
+interface Buteur {
+  TS_PLAYER_ID: number;
+  TS_RANK: number;
+  TS_PLAYER_NAME_PA: string;
+  TS_PLAYER_GOALS: number;
+  TS_PLAYER_ASISTS: number;
+  TS_IMAGE_PATH: string;
+  TEAM_NAME: string;
 }
 
 export default function ClassementTournament({
@@ -234,7 +242,43 @@ export default function ClassementTournament({
         <ClassementTableComponent teams={teams} />
       )}
       {selectedOption === "buteurs" && (
-        <ButeursTable meilleursButeurs={meilleursButeurs as Buteur[]} />
+        <tbody className="bg-white divide-y divide-gray-200">
+          {meilleursButeurs.map((buteur) => (
+            <tr key={buteur.TS_PLAYER_ID}>
+              <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
+                {buteur.TS_RANK}
+              </td>
+              <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm">
+                <div className="flex items-center">
+                  <div className="mr-2">
+                    <Image
+                      width={50}
+                      height={50}
+                      src={buteur.TS_IMAGE_PATH}
+                      alt="Player"
+                      className="w-8 h-8 rounded-full"
+                    />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-600">
+                      {buteur.TS_PLAYER_NAME_PA}
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      {buteur.TEAM_NAME}
+                    </div>
+                  </div>
+                </div>
+              </td>
+
+              <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
+                {buteur.TS_PLAYER_GOALS}
+              </td>
+              <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
+                {buteur.TS_PLAYER_ASISTS}
+              </td>
+            </tr>
+          ))}
+        </tbody>
       )}
     </div>
   );
