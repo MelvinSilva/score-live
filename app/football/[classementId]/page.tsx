@@ -54,7 +54,7 @@ export default function ClassementTournament({
   >("classement");
   const [meilleursButeurs, setMeilleursButeurs] = useState<Buteur[]>([]);
 
-  const apiKey = process.env.NEXT_PUBLIC_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_KEYY;
 
   useEffect(() => {
     const fetchSeasons = async () => {
