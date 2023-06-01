@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import FootballList from "../page";
+import Link from "next/link";
 
 interface Team {
   TEAM_ID: number;
@@ -77,6 +79,7 @@ export default function ClassementTournament({
         setSeasons(result);
 
         const season = result.SEASONS[0];
+
         const seasonId = season.SEASON_ID;
         const stageId = season.SEASON_TOURNAMENT_STAGE_ID;
         setSeasonId(seasonId);
@@ -87,7 +90,7 @@ export default function ClassementTournament({
     };
 
     fetchSeasons();
-  }, [process.env.NEXT_PUBLIC_KEY, params.classementId]);
+  }, [params.classementId]);
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -126,7 +129,7 @@ export default function ClassementTournament({
     if (seasonId && stageId) {
       fetchTeams();
     }
-  }, [seasonId, stageId, process.env.NEXT_PUBLIC_KEY]);
+  }, [seasonId, stageId]);
 
   useEffect(() => {
     const fetchButeurs = async () => {
@@ -143,6 +146,7 @@ export default function ClassementTournament({
             locale: "fr_FR",
             tournament_stage_id: stageId,
             tournament_season_id: seasonId,
+            limit: 50,
           },
           headers: {
             "X-RapidAPI-Key": process.env.NEXT_PUBLIC_KEY,
@@ -152,7 +156,8 @@ export default function ClassementTournament({
 
         const response = await axios.request(options);
         const result: { ROWS: Buteur[] } = response.data;
-        setMeilleursButeurs(result.ROWS);
+        const filteredButeurs = result.ROWS.slice(0, 50); // Récupére les 50 premier buteurs
+        setMeilleursButeurs(filteredButeurs);
       } catch (error) {
         console.error(
           "Erreur lors de la récupération des meilleurs buteurs",
@@ -167,7 +172,7 @@ export default function ClassementTournament({
     if (seasonId && stageId) {
       fetchButeurs();
     }
-  }, [seasonId, stageId, process.env.NEXT_PUBLIC_KEY]);
+  }, [seasonId, stageId]);
 
   const handleOptionChange = (option: "classement" | "buteurs") => {
     setSelectedOption(option);
@@ -194,11 +199,11 @@ export default function ClassementTournament({
 
   return (
     <div className="w-full mx-auto bg-gray-100">
-      <a href="/football">
+      <Link href="/football">
         <button className="w-full mx-auto bg-gray-200 font-semibold text-gray-600 py-1 px-4 text-sm hover:bg-green-100 center">
           Retour
         </button>
-      </a>
+      </Link>
       <br />
       <br />
       <div className="flex justify-center items-center mb-4">

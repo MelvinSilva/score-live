@@ -100,10 +100,10 @@ const FootballList = () => {
     };
 
     fetchChampionships();
-  }, [process.env.NEXT_PUBLIC_KEY]);
+  }, []);
 
   if (loading) {
-    // Remplacer 'Loading...' par votre spinner de chargement
+    // Remplacer 'Loading...' par votre spinner de chargementnpm
     return (
       <div>
         <br />
