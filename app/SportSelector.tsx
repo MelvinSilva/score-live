@@ -12,6 +12,7 @@ import { format, addDays } from "date-fns";
 import { fr } from "date-fns/locale";
 
 import FootballList from "./football/page";
+import TennisList from "./tennis/page";
 
 type SportOption = { value: string; label: JSX.Element };
 
@@ -26,15 +27,6 @@ const sports: SportOption[] = [
     ),
   },
   {
-    value: "Basketball",
-    label: (
-      <div className="flex items-center">
-        <IoBasketball />
-        <span className="ml-2">Basketball</span>
-      </div>
-    ),
-  },
-  {
     value: "Tennis",
     label: (
       <div className="flex items-center">
@@ -43,6 +35,16 @@ const sports: SportOption[] = [
       </div>
     ),
   },
+  {
+    value: "Basketball",
+    label: (
+      <div className="flex items-center">
+        <IoBasketball />
+        <span className="ml-2">Basketball</span>
+      </div>
+    ),
+  },
+
   {
     value: "Rugby",
     label: (
@@ -104,7 +106,7 @@ export default function SportSelector() {
       case "Basketball":
         return "Non disponible";
       case "Tennis":
-        return "Non disponible";
+        return <TennisList />;
       case "Rugby":
         return "Non disponible";
       default:
