@@ -262,38 +262,42 @@ export default function ResultTennisTournament({
                           {result.HOME_SCORE_CURRENT} -{" "}
                           {result.AWAY_SCORE_CURRENT}
                           <br />
-                          <div className="flex text-center">
+                          <div className="flex justify-center">
                             {result.HOME_SCORE_PART_1 &&
                               result.AWAY_SCORE_PART_1 && (
                                 <p className="text-xs font-light score">
                                   {result.HOME_SCORE_PART_1}-
-                                  {result.AWAY_SCORE_PART_1} &nbsp;
+                                  {result.AWAY_SCORE_PART_1}
                                 </p>
                               )}
                             {result.HOME_SCORE_PART_2 &&
                               result.AWAY_SCORE_PART_2 && (
                                 <p className="text-xs font-light score">
+                                  &nbsp;&nbsp;
                                   {result.HOME_SCORE_PART_2}-
-                                  {result.AWAY_SCORE_PART_2} &nbsp;
+                                  {result.AWAY_SCORE_PART_2}
                                 </p>
                               )}
                             {result.HOME_SCORE_PART_3 &&
                               result.AWAY_SCORE_PART_3 && (
                                 <p className="text-xs font-light score">
+                                  &nbsp;&nbsp;
                                   {result.HOME_SCORE_PART_3}-
-                                  {result.AWAY_SCORE_PART_3} &nbsp;
+                                  {result.AWAY_SCORE_PART_3}
                                 </p>
                               )}
                             {result.HOME_SCORE_PART_4 &&
                               result.AWAY_SCORE_PART_4 && (
                                 <p className="text-xs font-light score">
+                                  &nbsp;&nbsp;
                                   {result.HOME_SCORE_PART_4}-
-                                  {result.AWAY_SCORE_PART_4} &nbsp;
+                                  {result.AWAY_SCORE_PART_4}
                                 </p>
                               )}
                             {result.HOME_SCORE_PART_5 &&
                               result.AWAY_SCORE_PART_5 && (
                                 <p className="text-xs font-light score">
+                                  &nbsp;&nbsp;
                                   {result.HOME_SCORE_PART_5}-
                                   {result.AWAY_SCORE_PART_5}
                                 </p>
