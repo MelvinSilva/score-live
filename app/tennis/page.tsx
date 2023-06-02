@@ -16,11 +16,12 @@ const TennisList = () => {
     []
   );
   const [loading, setLoading] = useState<boolean>(true);
+  const [activeTab, setActiveTab] = useState<string>("ATP"); // Onglet actif par défaut
 
   useEffect(() => {
     const fetchChampionships = async () => {
       try {
-        setLoading(true); // spinner loading
+        setLoading(true);
         const options = {
           method: "GET",
           url: "https://flashlive-sports.p.rapidapi.com/v1/tournaments/stages",
@@ -37,7 +38,6 @@ const TennisList = () => {
         const response = await axios.request(options);
         const data = response.data.DATA;
 
-        // Filtrez et transformez les données pour obtenir les championnats souhaités
         const allowedCountries = ["France"];
 
         const filteredChampionships = data
@@ -45,11 +45,15 @@ const TennisList = () => {
             const isAllowedCountry = allowedCountries.includes(
               item.COUNTRY_NAME
             );
-
             const hasATP = item.LEAGUE_NAME.includes("ATP");
             const hasWTA = item.LEAGUE_NAME.includes("WTA");
+            const hasATPdoubles = item.LEAGUE_NAME.includes("ATP DOUBLES");
+            const hasWTAdoubles = item.LEAGUE_NAME.includes("WTA DOUBLES");
 
-            return isAllowedCountry && (hasATP || hasWTA);
+            return (
+              isAllowedCountry &&
+              (hasATP || hasWTA || hasATPdoubles || hasWTAdoubles)
+            );
           })
           .map((item: any) => ({
             id: item.id,
@@ -66,7 +70,6 @@ const TennisList = () => {
           error
         );
       } finally {
-        // Fin du chargement
         setLoading(false);
       }
     };
@@ -89,15 +92,89 @@ const TennisList = () => {
     );
   }
 
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const filteredChampionships = championships.filter((championship) => {
+    if (activeTab === "ATP") {
+      return (
+        championship.name.includes("ATP") &&
+        !championship.name.includes("DOUBLES")
+      );
+    }
+    if (activeTab === "WTA") {
+      return (
+        championship.name.includes("WTA") &&
+        !championship.name.includes("DOUBLES")
+      );
+    }
+    if (activeTab === "DOUBLES ATP") {
+      return championship.name.includes("ATP Doubles");
+    }
+    if (activeTab === "DOUBLES WTA") {
+      return championship.name.includes("WTA Doubles");
+    }
+    return false;
+  });
+
+  const renderTabs = () => {
+    return (
+      <div className="text-sm flex flex-wrap justify-center mb-4">
+        <button
+          className={`mr-4 mb-2 px-2 py-2 rounded-lg ${
+            activeTab === "ATP"
+              ? "bg-green-600 text-white"
+              : "bg-gray-200 text-gray-500"
+          } sm:w-auto sm:px-2 sm:py-3`}
+          onClick={() => handleTabClick("ATP")}
+        >
+          ATP
+        </button>
+        <button
+          className={`mr-4 mb-2 px-2 py-2 rounded-lg ${
+            activeTab === "WTA"
+              ? "bg-green-600 text-white"
+              : "bg-gray-200 text-gray-500"
+          } sm:w-auto sm:px-2 sm:py-3`}
+          onClick={() => handleTabClick("WTA")}
+        >
+          WTA
+        </button>
+        <button
+          className={`mr-4 mb-2 px-2 py-2 rounded-lg ${
+            activeTab === "DOUBLES ATP"
+              ? "bg-green-600 text-white"
+              : "bg-gray-200 text-gray-500"
+          } sm:w-auto sm:px-2 sm:py-3`}
+          onClick={() => handleTabClick("DOUBLES ATP")}
+        >
+          Doubles ATP
+        </button>
+        <button
+          className={`mb-2 px-2 py-2 rounded-lg ${
+            activeTab === "DOUBLES WTA"
+              ? "bg-green-600 text-white"
+              : "bg-gray-200 text-gray-500"
+          } sm:w-auto sm:px-2 sm:py-3`}
+          onClick={() => handleTabClick("DOUBLES WTA")}
+        >
+          Doubles WTA
+        </button>
+      </div>
+    );
+  };
+
   return (
     <div className="w-full mx-auto bg-gray-100">
       <h2 className="text-lg font-bold mb-4 pt-8 text-center text-green-600 tracking-widest">
         CHOISISSEZ LE TOURNOI
       </h2>
+      {renderTabs()}
       <div className="max-w-screen-md mx-auto">
         <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
           <tbody className="bg-white divide-y divide-gray-200">
-            {championships.map((championship, index) => (
+            {filteredChampionships.map((championship, index) => (
               <React.Fragment key={championship.stageId}>
                 {index === 0 ||
                 championships[index - 1].country !== championship.country ? (
@@ -111,7 +188,7 @@ const TennisList = () => {
                   </tr>
                 ) : null}
                 <tr>
-                  <a href={`football/${championship.stageId}`}>
+                  <a href={`tennis/${championship.stageId}`}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {championship.image ? (
                         <Image
