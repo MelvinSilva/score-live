@@ -129,7 +129,7 @@ const TennisList = () => {
           } sm:w-auto sm:px-2 sm:py-3`}
           onClick={() => handleTabClick("ATP")}
         >
-          ATP
+          Homme ATP
         </button>
         <button
           className={`mr-4 mb-2 px-2 py-2 rounded-lg ${
@@ -139,27 +139,7 @@ const TennisList = () => {
           } sm:w-auto sm:px-2 sm:py-3`}
           onClick={() => handleTabClick("WTA")}
         >
-          WTA
-        </button>
-        <button
-          className={`mr-4 mb-2 px-2 py-2 rounded-lg ${
-            activeTab === "DOUBLES ATP"
-              ? "bg-green-600 text-white"
-              : "bg-gray-200 text-gray-500"
-          } sm:w-auto sm:px-2 sm:py-3`}
-          onClick={() => handleTabClick("DOUBLES ATP")}
-        >
-          Doubles ATP
-        </button>
-        <button
-          className={`mb-2 px-2 py-2 rounded-lg ${
-            activeTab === "DOUBLES WTA"
-              ? "bg-green-600 text-white"
-              : "bg-gray-200 text-gray-500"
-          } sm:w-auto sm:px-2 sm:py-3`}
-          onClick={() => handleTabClick("DOUBLES WTA")}
-        >
-          Doubles WTA
+          Femme WTA
         </button>
       </div>
     );
