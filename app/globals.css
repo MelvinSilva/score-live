@@ -15,3 +15,11 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+
+.score {
+  font-size: 10px; /* Ajustez la taille de la police selon vos besoins */
+}
+
+.current-score {
+  font-size: 30px;
+}

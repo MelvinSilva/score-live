@@ -27,6 +27,16 @@ interface Tournament {
   AWAY_IMAGES: string[];
   INFO_NOTICE: string;
   STAGE: string;
+  HOME_SCORE_PART_1: string;
+  HOME_SCORE_PART_2: string;
+  HOME_SCORE_PART_3: string;
+  HOME_SCORE_PART_4: string;
+  HOME_SCORE_PART_5: string;
+  AWAY_SCORE_PART_1: string;
+  AWAY_SCORE_PART_2: string;
+  AWAY_SCORE_PART_3: string;
+  AWAY_SCORE_PART_4: string;
+  AWAY_SCORE_PART_5: string;
 }
 
 export default function ResultTennisTournament({
@@ -248,10 +258,48 @@ export default function ResultTennisTournament({
                       <br />
                       {result.HOME_SCORE_CURRENT &&
                       result.AWAY_SCORE_CURRENT ? (
-                        <p className="font-bold text-xl text-center">
+                        <div className="font-bold text-xl text-center current-score">
                           {result.HOME_SCORE_CURRENT} -{" "}
                           {result.AWAY_SCORE_CURRENT}
-                        </p>
+                          <br />
+                          <div className="flex text-center">
+                            {result.HOME_SCORE_PART_1 &&
+                              result.AWAY_SCORE_PART_1 && (
+                                <p className="text-xs font-light score">
+                                  {result.HOME_SCORE_PART_1}-
+                                  {result.AWAY_SCORE_PART_1} &nbsp;
+                                </p>
+                              )}
+                            {result.HOME_SCORE_PART_2 &&
+                              result.AWAY_SCORE_PART_2 && (
+                                <p className="text-xs font-light score">
+                                  {result.HOME_SCORE_PART_2}-
+                                  {result.AWAY_SCORE_PART_2} &nbsp;
+                                </p>
+                              )}
+                            {result.HOME_SCORE_PART_3 &&
+                              result.AWAY_SCORE_PART_3 && (
+                                <p className="text-xs font-light score">
+                                  {result.HOME_SCORE_PART_3}-
+                                  {result.AWAY_SCORE_PART_3} &nbsp;
+                                </p>
+                              )}
+                            {result.HOME_SCORE_PART_4 &&
+                              result.AWAY_SCORE_PART_4 && (
+                                <p className="text-xs font-light score">
+                                  {result.HOME_SCORE_PART_4}-
+                                  {result.AWAY_SCORE_PART_4} &nbsp;
+                                </p>
+                              )}
+                            {result.HOME_SCORE_PART_5 &&
+                              result.AWAY_SCORE_PART_5 && (
+                                <p className="text-xs font-light score">
+                                  {result.HOME_SCORE_PART_5}-
+                                  {result.AWAY_SCORE_PART_5}
+                                </p>
+                              )}
+                          </div>
+                        </div>
                       ) : (
                         <p className="font-semibold text-xs text-center">
                           {result.INFO_NOTICE ? result.INFO_NOTICE : ""}
