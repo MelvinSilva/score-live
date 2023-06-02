@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import FootballList from "../page";
 import Link from "next/link";
 
 interface Team {
@@ -200,7 +199,7 @@ export default function ClassementTournament({
   return (
     <div className="w-full mx-auto bg-gray-100">
       <Link href="/football">
-        <button className="w-full mx-auto bg-gray-200 font-semibold text-gray-600 py-1 px-4 text-sm hover:bg-green-100 center">
+        <button className="w-full mx-auto bg-green-200 font-semibold py-1 px-4 text-sm hover:bg-green-400 center">
           Retour
         </button>
       </Link>

@@ -25,6 +25,8 @@ interface Tournament {
   STAGE_TYPE: string;
   HOME_IMAGES: string[];
   AWAY_IMAGES: string[];
+  INFO_NOTICE: string;
+  STAGE: string;
 }
 
 export default function ResultTennisTournament({
@@ -181,13 +183,13 @@ export default function ResultTennisTournament({
   return (
     <div className="w-full mx-auto bg-gray-100">
       <Link href="/tennis">
-        <button className="w-full mx-auto bg-gray-200 font-semibold text-gray-600 py-1 px-4 text-sm hover:bg-green-100 center">
+        <button className="w-full mx-auto bg-green-200 font-semibold py-1 px-4 text-sm hover:bg-green-400 center">
           Retour
         </button>
       </Link>
       <br />
       <br />
-      <div className="flex justify-center items-center mb-4">
+      <div className="flex justify-center items-center">
         {seasons?.TOURNAMENT_IMAGE && (
           <Image
             src={seasons?.TOURNAMENT_IMAGE}
@@ -198,79 +200,107 @@ export default function ResultTennisTournament({
           />
         )}
       </div>
+      <br />
 
-      <h3 className="text-md font-bold mb-4 text-center text-green-600 tracking-widest">
+      <h3 className="text-md font-bold mb-4 text-center text-green-600">
         {seasons?.LEAGUE_NAME}
       </h3>
 
       {tournamentResult && tournamentResult.length > 0 ? (
         <div>
           {renderTabs()}
-          <div className="space-y-8 m-4 rounded-lg">
-            {filteredResults.map((result) => (
-              <div key={result.EVENT_ID} className="border-2 p-4 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    {result.HOME_IMAGES && (
-                      <Image
-                        src={result.HOME_IMAGES[0]}
-                        width={60}
-                        height={60}
-                        alt="Home Player"
-                        className="rounded-full"
-                      />
-                    )}
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <p className="text-gray-400 text-xs">
-                      Le{" "}
-                      {new Date(result.START_TIME * 1000).toLocaleDateString(
-                        "fr-FR",
-                        {
-                          day: "numeric",
-                          month: "numeric",
-                          year: "numeric",
-                        }
-                      )}{" "}
-                      à{" "}
-                      {new Date(result.START_TIME * 1000).toLocaleTimeString(
-                        "fr-FR",
-                        {
-                          hour: "numeric",
-                          minute: "numeric",
-                        }
+          <div className="bg-gray-100 p-4">
+            <div className="space-y-8 m-4 rounded-lg">
+              {filteredResults.map((result) => (
+                <div key={result.EVENT_ID} className="p-4 rounded-lg bg-white">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      {result.HOME_IMAGES && (
+                        <Image
+                          src={result.HOME_IMAGES[0]}
+                          width={60}
+                          height={60}
+                          alt="Home Player"
+                          className="rounded-full"
+                        />
                       )}
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <p className="text-gray-400 text-xs">
+                        Le{" "}
+                        {new Date(result.START_TIME * 1000).toLocaleDateString(
+                          "fr-FR",
+                          {
+                            day: "numeric",
+                            month: "numeric",
+                            year: "numeric",
+                          }
+                        )}{" "}
+                        à{" "}
+                        {new Date(result.START_TIME * 1000).toLocaleTimeString(
+                          "fr-FR",
+                          {
+                            hour: "numeric",
+                            minute: "numeric",
+                          }
+                        )}
+                      </p>
+                      <br />
+                      {result.HOME_SCORE_CURRENT &&
+                      result.AWAY_SCORE_CURRENT ? (
+                        <p className="font-bold text-xl text-center">
+                          {result.HOME_SCORE_CURRENT} -{" "}
+                          {result.AWAY_SCORE_CURRENT}
+                        </p>
+                      ) : (
+                        <p className="font-semibold text-xs text-center">
+                          {result.INFO_NOTICE ? result.INFO_NOTICE : ""}
+                        </p>
+                      )}
+
+                      <p className="text-gray-400 text-xs mt-2">
+                        {result.STAGE_TYPE === "FINISHED"
+                          ? "Terminé"
+                          : "En cours"}
+                      </p>
+                    </div>
+                    <div className="flex items-center">
+                      {result.AWAY_IMAGES && (
+                        <Image
+                          src={result.AWAY_IMAGES[0]}
+                          width={60}
+                          height={60}
+                          alt="Away Player"
+                          className="rounded-full"
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex justify-between mt-4 text-gray-600 text-sm">
+                    <p
+                      className={
+                        result.HOME_SCORE_CURRENT > result.AWAY_SCORE_CURRENT
+                          ? "font-bold text-green-700"
+                          : ""
+                      }
+                    >
+                      {result.HOME_NAME}
                     </p>
-                    <br />
-                    <p className="font-bold text-center">
-                      {result.HOME_SCORE_CURRENT} - {result.AWAY_SCORE_CURRENT}
-                    </p>
-                    <p className="text-gray-400 text-xs mt-2">
-                      {result.STAGE_TYPE === "FINISHED"
-                        ? "Terminé"
-                        : "En cours"}
+                    <p
+                      className={
+                        result.HOME_SCORE_CURRENT < result.AWAY_SCORE_CURRENT
+                          ? "font-bold text-green-700"
+                          : ""
+                      }
+                    >
+                      {result.AWAY_NAME}
                     </p>
                   </div>
-                  <div className="flex items-center">
-                    {result.AWAY_IMAGES && (
-                      <Image
-                        src={result.AWAY_IMAGES[0]}
-                        width={60}
-                        height={60}
-                        alt="Away Player"
-                        className="rounded-full"
-                      />
-                    )}
-                  </div>
                 </div>
-                <div className="flex justify-between mt-4 text-gray-600 text-sm">
-                  <p>{result.HOME_NAME}</p>
-                  <p>{result.AWAY_NAME}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            {hasMoreResults && <div ref={loadMoreRef}></div>}
           </div>
-          {hasMoreResults && <div ref={loadMoreRef}></div>}
         </div>
       ) : (
         <p>Aucun événement disponible</p>

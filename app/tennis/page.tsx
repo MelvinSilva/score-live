@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import SportSelector from "../page";
 
-type FootballChampionship = {
+type TennisChampionship = {
   name: string;
   image: string;
   country: string;
@@ -12,9 +13,7 @@ type FootballChampionship = {
 };
 
 const TennisList = () => {
-  const [championships, setChampionships] = useState<FootballChampionship[]>(
-    []
-  );
+  const [championships, setChampionships] = useState<TennisChampionship[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<string>("ATP"); // Onglet actif par défaut
 
@@ -38,7 +37,15 @@ const TennisList = () => {
         const response = await axios.request(options);
         const data = response.data.DATA;
 
-        const allowedCountries = ["France"];
+        const allowedCountries = [
+          "France",
+          "Angleterre",
+          "USA",
+          "Australie",
+          "Espagne",
+          "Portugal",
+          "Italie",
+        ];
 
         const filteredChampionships = data
           .filter((item: any) => {
@@ -61,7 +68,22 @@ const TennisList = () => {
             image: item.TOURNAMENT_IMAGE,
             country: item.COUNTRY_NAME,
             stageId: item.STAGE_ID,
-          }));
+          }))
+          .sort((a: TennisChampionship, b: TennisChampionship) => {
+            const countriesOrder = [
+              "France",
+              "USA",
+              "Angleterre",
+              "Australie",
+              "Espagne",
+              "Portugal",
+              "Italie",
+            ];
+            return (
+              countriesOrder.indexOf(a.country) -
+              countriesOrder.indexOf(b.country)
+            );
+          });
 
         setChampionships(filteredChampionships);
       } catch (error) {
@@ -96,28 +118,6 @@ const TennisList = () => {
     setActiveTab(tab);
   };
 
-  const filteredChampionships = championships.filter((championship) => {
-    if (activeTab === "ATP") {
-      return (
-        championship.name.includes("ATP") &&
-        !championship.name.includes("DOUBLES")
-      );
-    }
-    if (activeTab === "WTA") {
-      return (
-        championship.name.includes("WTA") &&
-        !championship.name.includes("DOUBLES")
-      );
-    }
-    if (activeTab === "DOUBLES ATP") {
-      return championship.name.includes("ATP Doubles");
-    }
-    if (activeTab === "DOUBLES WTA") {
-      return championship.name.includes("WTA Doubles");
-    }
-    return false;
-  });
-
   const renderTabs = () => {
     return (
       <div className="text-sm flex flex-wrap justify-center mb-4">
@@ -145,6 +145,73 @@ const TennisList = () => {
     );
   };
 
+  const renderCountryChampionships = () => {
+    const countries: { [key: string]: TennisChampionship[] } = {};
+
+    championships.forEach((championship) => {
+      const country = championship.country;
+      if (!countries[country]) {
+        countries[country] = [];
+      }
+      countries[country].push(championship);
+    });
+
+    return Object.entries(countries).map(([country, countryChampionships]) => (
+      <React.Fragment key={country}>
+        <tr>
+          <td
+            colSpan={2}
+            className="px-6 py-4 text-sm font-semibold text-gray-500 uppercase"
+          >
+            {country}
+          </td>
+        </tr>
+        {countryChampionships
+          .filter((championship) => {
+            if (activeTab === "ATP") {
+              return (
+                championship.name.includes("ATP") &&
+                !championship.name.includes("Doubles")
+              );
+            }
+            if (activeTab === "WTA") {
+              return (
+                championship.name.includes("WTA") &&
+                !championship.name.includes("Doubles")
+              );
+            }
+            return false;
+          })
+          .map((championship) => (
+            <tr key={championship.stageId}>
+              <a href={`tennis/${championship.stageId}`}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {championship.image ? (
+                    <Image
+                      width={100}
+                      height={100}
+                      src={championship.image}
+                      alt={championship.name}
+                      className="w-8 h-8 mr-2 inline-block"
+                    />
+                  ) : (
+                    <Image
+                      width={100}
+                      height={100}
+                      src={"/no-image.png"}
+                      alt={championship.name}
+                      className="w-8 h-8 mr-2 inline-block"
+                    />
+                  )}
+                  {championship.name}
+                </td>
+              </a>
+            </tr>
+          ))}
+      </React.Fragment>
+    ));
+  };
+
   return (
     <div className="w-full mx-auto bg-gray-100">
       <h2 className="text-lg font-bold mb-4 pt-8 text-center text-green-600 tracking-widest">
@@ -154,45 +221,7 @@ const TennisList = () => {
       <div className="max-w-screen-md mx-auto">
         <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
           <tbody className="bg-white divide-y divide-gray-200">
-            {filteredChampionships.map((championship, index) => (
-              <React.Fragment key={championship.stageId}>
-                {index === 0 ||
-                championships[index - 1].country !== championship.country ? (
-                  <tr>
-                    <td
-                      colSpan={2}
-                      className="px-6 py-4 text-sm font-semibold text-gray-500 uppercase"
-                    >
-                      {championship.country}
-                    </td>
-                  </tr>
-                ) : null}
-                <tr>
-                  <a href={`tennis/${championship.stageId}`}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {championship.image ? (
-                        <Image
-                          width={100}
-                          height={100}
-                          src={championship.image}
-                          alt={championship.name}
-                          className="w-8 h-8 mr-2 inline-block"
-                        />
-                      ) : (
-                        <Image
-                          width={100}
-                          height={100}
-                          src={"/no-image.jpeg"}
-                          alt={championship.name}
-                          className="w-8 h-8 mr-2 inline-block"
-                        />
-                      )}
-                      {championship.name}
-                    </td>
-                  </a>
-                </tr>
-              </React.Fragment>
-            ))}
+            {renderCountryChampionships()}
           </tbody>
         </table>
         <br />
