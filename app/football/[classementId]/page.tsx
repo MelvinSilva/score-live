@@ -182,7 +182,7 @@ export default function ClassementTournament({
       <div>
         <br />
         <Image
-          src="/Spin-1s-200px.gif"
+          src="/Spin-1.2s-200px.svg"
           width={100}
           height={100}
           alt="spinner"
@@ -199,7 +199,7 @@ export default function ClassementTournament({
   return (
     <div className="w-full mx-auto bg-gray-100">
       <Link href="/football">
-        <button className="w-full mx-auto bg-green-200 font-semibold py-1 px-4 text-sm hover:bg-green-400 center">
+        <button className="w-full mx-auto bg-gray-200 font-semibold py-1 px-4 text-sm hover:bg-gray-400 center">
           Retour
         </button>
       </Link>
@@ -215,14 +215,14 @@ export default function ClassementTournament({
         />
       </div>
 
-      <h3 className="text-md font-bold mb-4 text-center text-green-600 tracking-widest">
+      <h3 className="text-md font-bold mb-4 text-center text-gray-600 tracking-widest">
         {tournament?.LEAGUE_NAME} ({tournament?.COUNTRY_NAME})
       </h3>
       <div className="flex justify-center mb-4">
         <button
           className={`mr-4 px-4 py-2 rounded-lg ${
             selectedOption === "classement"
-              ? "bg-green-600 text-white"
+              ? "bg-gray-600 text-white"
               : "bg-gray-200 text-gray-500"
           }`}
           onClick={() => handleOptionChange("classement")}
@@ -232,7 +232,7 @@ export default function ClassementTournament({
         <button
           className={`px-4 py-2 rounded-lg ${
             selectedOption === "buteurs"
-              ? "bg-green-600 text-white"
+              ? "bg-gray-600 text-white"
               : "bg-gray-200 text-gray-500"
           }`}
           onClick={() => handleOptionChange("buteurs")}
@@ -325,13 +325,15 @@ export default function ClassementTournament({
                   <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500 text-center">
                     {team.GOALS}
                   </td>
-                  <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-green-600 text-center font-bold">
+                  <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-600 text-center font-bold">
                     {team.POINTS}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <br />
+          <br />
         </div>
       )}
       {selectedOption === "buteurs" && (
@@ -403,6 +405,7 @@ export default function ClassementTournament({
                 ))}
               </tbody>
             </table>
+            <br />
             <br />
           </div>
         </div>

@@ -147,6 +147,7 @@ export default function ResultTennisTournament({
     }
   };
 
+  // tri des ROUND dans des tabs ??
   const renderTabs = () => {
     const rounds = tournamentResult
       .map((result) => result.ROUND)
@@ -159,7 +160,7 @@ export default function ResultTennisTournament({
             key={round}
             className={`mr-4 mb-2 px-4 py-2 rounded-lg ${
               activeTab === round
-                ? "bg-green-600 text-white"
+                ? "bg-gray-600 text-white"
                 : "bg-gray-200 text-gray-500"
             } sm:w-auto sm:px-2 sm:py-3`}
             onClick={() => setActiveTab(round)}
@@ -171,6 +172,7 @@ export default function ResultTennisTournament({
     );
   };
 
+  // filtre les resultats selon le ROUND dans chaque tabs
   const filteredResults = activeTab
     ? tournamentResult.filter((result) => result.ROUND === activeTab)
     : tournamentResult;
@@ -180,7 +182,7 @@ export default function ResultTennisTournament({
       <div>
         <br />
         <Image
-          src="/Spin-1s-200px.gif"
+          src="/Spin-1.2s-200px.svg"
           width={100}
           height={100}
           alt="spinner"
@@ -193,7 +195,7 @@ export default function ResultTennisTournament({
   return (
     <div className="w-full mx-auto bg-gray-100">
       <Link href="/tennis">
-        <button className="w-full mx-auto bg-green-200 font-semibold py-1 px-4 text-sm hover:bg-green-400 center">
+        <button className="w-full mx-auto bg-gray-200 font-semibold py-1 px-4 text-sm hover:bg-gray-400 center">
           Retour
         </button>
       </Link>
@@ -212,7 +214,7 @@ export default function ResultTennisTournament({
       </div>
       <br />
 
-      <h3 className="text-md font-bold mb-4 text-center text-green-600">
+      <h3 className="text-md font-bold mb-4 text-center text-gray-600">
         {seasons?.LEAGUE_NAME}
       </h3>
 
@@ -332,7 +334,7 @@ export default function ResultTennisTournament({
                     <p
                       className={
                         result.HOME_SCORE_CURRENT > result.AWAY_SCORE_CURRENT
-                          ? "font-bold text-green-700"
+                          ? "font-bold text-gray-700"
                           : ""
                       }
                     >
@@ -341,7 +343,7 @@ export default function ResultTennisTournament({
                     <p
                       className={
                         result.HOME_SCORE_CURRENT < result.AWAY_SCORE_CURRENT
-                          ? "font-bold text-green-700"
+                          ? "font-bold text-gray-700"
                           : ""
                       }
                     >

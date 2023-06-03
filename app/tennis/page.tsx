@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import SportSelector from "../page";
 
 type TennisChampionship = {
   name: string;
@@ -15,7 +14,7 @@ type TennisChampionship = {
 const TennisList = () => {
   const [championships, setChampionships] = useState<TennisChampionship[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [activeTab, setActiveTab] = useState<string>("ATP"); // Onglet actif par défaut
+  const [activeTab, setActiveTab] = useState<string>("France"); // Onglet actif par défaut
 
   useEffect(() => {
     const fetchChampionships = async () => {
@@ -45,6 +44,7 @@ const TennisList = () => {
           "Espagne",
           "Portugal",
           "Italie",
+          "Allemagne",
         ];
 
         const filteredChampionships = data
@@ -54,12 +54,11 @@ const TennisList = () => {
             );
             const hasATP = item.LEAGUE_NAME.includes("ATP");
             const hasWTA = item.LEAGUE_NAME.includes("WTA");
-            const hasATPdoubles = item.LEAGUE_NAME.includes("ATP DOUBLES");
-            const hasWTAdoubles = item.LEAGUE_NAME.includes("WTA DOUBLES");
 
             return (
               isAllowedCountry &&
-              (hasATP || hasWTA || hasATPdoubles || hasWTAdoubles)
+              (hasATP || hasWTA) &&
+              !item.LEAGUE_NAME.includes("Doubles")
             );
           })
           .map((item: any) => ({
@@ -104,7 +103,7 @@ const TennisList = () => {
       <div>
         <br />
         <Image
-          src="/Spin-1s-200px.gif"
+          src="/Spin-1.2s-200px.svg"
           width={100}
           height={100}
           alt={"spinner"}
@@ -119,103 +118,81 @@ const TennisList = () => {
   };
 
   const renderTabs = () => {
+    const countries = Array.from(
+      new Set(championships.map((championship) => championship.country))
+    );
+
+    const countryFlags: { [country: string]: string } = {
+      Allemagne: "🇩🇪",
+      Italie: "🇮🇹",
+      France: "🇫🇷",
+      Angleterre: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      Espagne: "🇪🇸",
+      Portugal: "🇵🇹",
+      USA: "🇺🇸",
+      Australie: "🇦🇺",
+    };
+
     return (
       <div className="text-sm flex flex-wrap justify-center mb-4">
-        <button
-          className={`mr-4 mb-2 px-2 py-2 rounded-lg ${
-            activeTab === "ATP"
-              ? "bg-green-600 text-white"
-              : "bg-gray-200 text-gray-500"
-          } sm:w-auto sm:px-2 sm:py-3`}
-          onClick={() => handleTabClick("ATP")}
-        >
-          Homme ATP
-        </button>
-        <button
-          className={`mr-4 mb-2 px-2 py-2 rounded-lg ${
-            activeTab === "WTA"
-              ? "bg-green-600 text-white"
-              : "bg-gray-200 text-gray-500"
-          } sm:w-auto sm:px-2 sm:py-3`}
-          onClick={() => handleTabClick("WTA")}
-        >
-          Femme WTA
-        </button>
+        {countries.map((country) => (
+          <button
+            key={country}
+            className={`mr-2 ml-2 mb-2 px-2 py-0 text-xl justify-center rounded-lg ${
+              activeTab === country
+                ? "border-2 border-gray-300 text-white"
+                : "text-gray-500"
+            } sm:w-auto sm:px-4 sm:py-2`}
+            onClick={() => handleTabClick(country)}
+          >
+            {countryFlags[country]}
+          </button>
+        ))}
       </div>
     );
   };
 
   const renderCountryChampionships = () => {
-    const countries: { [key: string]: TennisChampionship[] } = {};
+    const filteredChampionships = championships.filter(
+      (championship) => championship.country === activeTab
+    );
 
-    championships.forEach((championship) => {
-      const country = championship.country;
-      if (!countries[country]) {
-        countries[country] = [];
-      }
-      countries[country].push(championship);
-    });
-
-    return Object.entries(countries).map(([country, countryChampionships]) => (
-      <React.Fragment key={country}>
-        <tr>
-          <td
-            colSpan={2}
-            className="px-6 py-4 text-sm font-semibold text-gray-500 uppercase"
-          >
-            {country}
-          </td>
-        </tr>
-        {countryChampionships
-          .filter((championship) => {
-            if (activeTab === "ATP") {
-              return (
-                championship.name.includes("ATP") &&
-                !championship.name.includes("Doubles")
-              );
-            }
-            if (activeTab === "WTA") {
-              return (
-                championship.name.includes("WTA") &&
-                !championship.name.includes("Doubles")
-              );
-            }
-            return false;
-          })
-          .map((championship) => (
-            <tr key={championship.stageId}>
-              <a href={`tennis/${championship.stageId}`}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {championship.image ? (
-                    <Image
-                      width={100}
-                      height={100}
-                      src={championship.image}
-                      alt={championship.name}
-                      className="w-8 h-8 mr-2 inline-block"
-                    />
-                  ) : (
-                    <Image
-                      width={100}
-                      height={100}
-                      src={"/no-image.png"}
-                      alt={championship.name}
-                      className="w-8 h-8 mr-2 inline-block"
-                    />
-                  )}
-                  {championship.name}
-                </td>
-              </a>
-            </tr>
-          ))}
+    return (
+      <React.Fragment>
+        {filteredChampionships.map((championship) => (
+          <tr key={championship.stageId}>
+            <a href={`tennis/${championship.stageId}`}>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {championship.image ? (
+                  <Image
+                    width={100}
+                    height={100}
+                    src={championship.image}
+                    alt={championship.name}
+                    className="w-8 h-8 mr-2 inline-block"
+                  />
+                ) : (
+                  <Image
+                    width={100}
+                    height={100}
+                    src={"/no-image.png"}
+                    alt={championship.name}
+                    className="w-8 h-8 mr-2 inline-block"
+                  />
+                )}
+                {championship.name}
+              </td>
+            </a>
+          </tr>
+        ))}
       </React.Fragment>
-    ));
+    );
   };
 
   return (
     <div className="w-full mx-auto bg-gray-100">
-      <h2 className="text-lg font-bold mb-4 pt-8 text-center text-green-600 tracking-widest">
-        CHOISISSEZ LE TOURNOI
+      <h2 className="text-xs font-semibold mb-4 pt-8 text-center text-gray-600 tracking-widest">
+        CHOISIR LE PAYS PUIS LE TOURNOI
       </h2>
       {renderTabs()}
       <div className="max-w-screen-md mx-auto">

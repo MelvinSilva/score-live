@@ -16,11 +16,12 @@ const FootballList = () => {
     []
   );
   const [loading, setLoading] = useState<boolean>(true);
+  const [activeTab, setActiveTab] = useState<string>("France");
 
   useEffect(() => {
     const fetchChampionships = async () => {
       try {
-        setLoading(true); // spinner loading
+        setLoading(true);
         const options = {
           method: "GET",
           url: "https://flashlive-sports.p.rapidapi.com/v1/tournaments/stages",
@@ -37,7 +38,6 @@ const FootballList = () => {
         const response = await axios.request(options);
         const data = response.data.DATA;
 
-        // Filtrez et transformez les données pour obtenir les championnats souhaités
         const allowedCountries = [
           "Allemagne",
           "Italie",
@@ -88,13 +88,13 @@ const FootballList = () => {
           }));
 
         setChampionships(filteredChampionships);
+        setActiveTab("France");
       } catch (error) {
         console.error(
           "Erreur lors de la récupération des championnats de football :",
           error
         );
       } finally {
-        // Fin du chargement
         setLoading(false);
       }
     };
@@ -103,12 +103,11 @@ const FootballList = () => {
   }, []);
 
   if (loading) {
-    // Remplacer 'Loading...' par votre spinner de chargementnpm
     return (
       <div>
         <br />
         <Image
-          src="/Spin-1s-200px.gif"
+          src="/Spin-1.2s-200px.svg"
           width={100}
           height={100}
           alt={"spinner"}
@@ -118,43 +117,80 @@ const FootballList = () => {
     );
   }
 
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
+
+  const renderTabs = () => {
+    const countries = Array.from(
+      new Set(championships.map((championship) => championship.country))
+    );
+
+    const countryFlags: { [country: string]: string } = {
+      Allemagne: "🇩🇪",
+      Italie: "🇮🇹",
+      France: "🇫🇷",
+      Angleterre: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      Espagne: "🇪🇸",
+      Portugal: "🇵🇹",
+    };
+
+    return (
+      <div className="text-sm flex flex-wrap justify-center mb-4">
+        {countries.map((country) => (
+          <button
+            key={country}
+            className={`mr-2 ml-2 mb-2 px-2 py-0 text-xl justify-center rounded-lg ${
+              activeTab === country
+                ? "border-2 border-gray-300 text-white"
+                : "text-gray-500"
+            } sm:w-auto sm:px-4 sm:py-2`}
+            onClick={() => handleTabClick(country)}
+          >
+            {countryFlags[country]}
+          </button>
+        ))}
+      </div>
+    );
+  };
+
+  const renderCountryChampionships = () => {
+    const filteredChampionships = championships.filter(
+      (championship) => championship.country === activeTab
+    );
+
+    return (
+      <React.Fragment>
+        {filteredChampionships.map((championship) => (
+          <tr key={championship.stageId}>
+            <a href={`football/${championship.stageId}`}>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <Image
+                  width={100}
+                  height={100}
+                  src={championship.image}
+                  alt={championship.name}
+                  className="w-8 h-8 mr-2 inline-block"
+                />
+                {championship.name}
+              </td>
+            </a>
+          </tr>
+        ))}
+      </React.Fragment>
+    );
+  };
+
   return (
     <div className="w-full mx-auto bg-gray-100">
-      <h2 className="text-lg font-bold mb-4 pt-8 text-center text-green-600 tracking-widest">
-        CHOISISSEZ LE CHAMPIONNAT
+      <h2 className="text-xs font-semibold mb-4 pt-8 text-center text-gray-600 tracking-widest">
+        CHOISIR LE PAYS PUIS LE CHAMPIONNAT
       </h2>
+      {renderTabs()}
       <div className="max-w-screen-md mx-auto">
         <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
           <tbody className="bg-white divide-y divide-gray-200">
-            {championships.map((championship, index) => (
-              <React.Fragment key={championship.stageId}>
-                {index === 0 ||
-                championships[index - 1].country !== championship.country ? (
-                  <tr>
-                    <td
-                      colSpan={2}
-                      className="px-6 py-4 text-sm font-semibold text-gray-500 uppercase"
-                    >
-                      {championship.country}
-                    </td>
-                  </tr>
-                ) : null}
-                <tr>
-                  <a href={`football/${championship.stageId}`}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      <Image
-                        width={100}
-                        height={100}
-                        src={championship.image}
-                        alt={championship.name}
-                        className="w-8 h-8 mr-2 inline-block"
-                      />
-                      {championship.name}
-                    </td>
-                  </a>
-                </tr>
-              </React.Fragment>
-            ))}
+            {renderCountryChampionships()}
           </tbody>
         </table>
         <br />
