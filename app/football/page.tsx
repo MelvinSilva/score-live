@@ -183,9 +183,7 @@ const FootballList = () => {
 
   return (
     <div className="w-full mx-auto bg-gray-100">
-      <h2 className="text-xs font-semibold mb-4 pt-8 text-center text-gray-600 tracking-widest">
-        CHOISIR LE PAYS PUIS LE CHAMPIONNAT
-      </h2>
+      <br />
       {renderTabs()}
       <div className="max-w-screen-md mx-auto">
         <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">

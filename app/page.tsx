@@ -1,4 +1,4 @@
-import SportSelector from "./SportSelector";
+import SportSelector from "./sportSelector";
 
 export default function Home() {
   return (
