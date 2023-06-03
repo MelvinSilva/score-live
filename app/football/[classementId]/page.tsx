@@ -3,50 +3,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-
-interface Team {
-  TEAM_ID: number;
-  TEAM_NAME: string;
-  TEAM_IMAGE_PATH: string;
-  MATCHES_PLAYED: number;
-  WINS: number;
-  GOALS: number;
-  POINTS: number;
-  RANKING: number;
-  TUC: string;
-}
-
-interface Season {
-  TOURNAMENT_IMAGE: string;
-  SEASONS: {
-    SEASON_ID: number;
-    SEASON_TOURNAMENT_STAGE_ID: number;
-  }[];
-}
-
-interface Tournament {
-  COUNTRY_NAME: string;
-  LEAGUE_NAME: string;
-}
-
-interface Buteur {
-  TS_PLAYER_ID: number;
-  TS_RANK: number;
-  TS_PLAYER_NAME_PA: string;
-  TS_PLAYER_GOALS: number;
-  TS_PLAYER_ASISTS: number;
-  TS_IMAGE_PATH: string;
-  TEAM_NAME: string;
-}
+import { Buteur, SeasonFoot, TeamFoot, TournamentFoot } from "@/app/types";
 
 export default function ClassementTournament({
   params,
 }: {
   params: { classementId: string };
 }) {
-  const [seasons, setSeasons] = useState<Season | null>(null);
-  const [tournament, setTournament] = useState<Tournament | null>(null);
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [seasons, setSeasons] = useState<SeasonFoot | null>(null);
+  const [tournament, setTournament] = useState<TournamentFoot | null>(null);
+  const [teams, setTeams] = useState<TeamFoot[]>([]);
   const [seasonId, setSeasonId] = useState<number | null>(null);
   const [stageId, setStageId] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -72,8 +38,8 @@ export default function ClassementTournament({
         };
 
         const response = await axios.request(options);
-        const result: Season = response.data.DATA;
-        const resultTournament: Tournament = response.data.DATA;
+        const result: SeasonFoot = response.data.DATA;
+        const resultTournament: TournamentFoot = response.data.DATA;
         setTournament(resultTournament);
         setSeasons(result);
 
@@ -115,7 +81,7 @@ export default function ClassementTournament({
         };
 
         const response = await axios.request(options);
-        const result: { ROWS: Team[] }[] = response.data.DATA;
+        const result: { ROWS: TeamFoot[] }[] = response.data.DATA;
         setTeams(result[0].ROWS);
       } catch (error) {
         console.error("Erreur lors de la récupération des équipes", error);

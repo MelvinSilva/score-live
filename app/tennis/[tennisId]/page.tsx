@@ -3,49 +3,17 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-
-interface Season {
-  TOURNAMENT_IMAGE: string;
-  LEAGUE_NAME: string;
-  SEASONS: {
-    SEASON_ID: number;
-    SEASON_TOURNAMENT_STAGE_ID: number;
-  }[];
-}
-
-interface Tournament {
-  EVENT_ID: string;
-  START_TIME: number;
-  START_UTIME: number;
-  HOME_NAME: string;
-  AWAY_NAME: string;
-  HOME_SCORE_CURRENT: string;
-  AWAY_SCORE_CURRENT: string;
-  ROUND: string;
-  STAGE_TYPE: string;
-  HOME_IMAGES: string[];
-  AWAY_IMAGES: string[];
-  INFO_NOTICE: string;
-  STAGE: string;
-  HOME_SCORE_PART_1: string;
-  HOME_SCORE_PART_2: string;
-  HOME_SCORE_PART_3: string;
-  HOME_SCORE_PART_4: string;
-  HOME_SCORE_PART_5: string;
-  AWAY_SCORE_PART_1: string;
-  AWAY_SCORE_PART_2: string;
-  AWAY_SCORE_PART_3: string;
-  AWAY_SCORE_PART_4: string;
-  AWAY_SCORE_PART_5: string;
-}
+import { SeasonTennis, TournamentTennis } from "@/app/types";
 
 export default function ResultTennisTournament({
   params,
 }: {
   params: { tennisId: string };
 }) {
-  const [seasons, setSeasons] = useState<Season | null>(null);
-  const [tournamentResult, setTournamentResult] = useState<Tournament[]>([]);
+  const [seasons, setSeasons] = useState<SeasonTennis | null>(null);
+  const [tournamentResult, setTournamentResult] = useState<TournamentTennis[]>(
+    []
+  );
   const [seasonId, setSeasonId] = useState<number | null>(null);
   const [stageId, setStageId] = useState<number | null | undefined>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -71,7 +39,7 @@ export default function ResultTennisTournament({
         };
 
         const response = await axios.request(options);
-        const result: Season = response.data.DATA;
+        const result: SeasonTennis = response.data.DATA;
         setSeasons(result);
         setSeasonId(result.SEASONS[0].SEASON_ID);
         setStageId(result.SEASONS[0].SEASON_TOURNAMENT_STAGE_ID);
@@ -92,7 +60,7 @@ export default function ResultTennisTournament({
       }
 
       let page = 1;
-      let allResults: Tournament[] = [];
+      let allResults: TournamentTennis[] = [];
 
       while (true) {
         try {
@@ -111,7 +79,7 @@ export default function ResultTennisTournament({
           };
 
           const response = await axios.request(options);
-          const result: Tournament[] = response.data.DATA[0].EVENTS;
+          const result: TournamentTennis[] = response.data.DATA[0].EVENTS;
 
           if (result.length === 0) {
             // Aucun résultat supplémentaire
