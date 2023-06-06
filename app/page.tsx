@@ -1,3 +1,9 @@
+import FootballList from "./football/page";
+
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <FootballList />
+    </div>
+  );
 }

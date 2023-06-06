@@ -45,6 +45,13 @@ const sports: SportOption[] = [
 export default function SportSelector() {
   const [selectedSport, setSelectedSport] = useState<string | null>(null);
 
+  const handleClickUnavailableSport = (sport: SportOption) => {
+    setSelectedSport(sport.value);
+    setTimeout(() => {
+      setSelectedSport(null);
+    }, 5000);
+  };
+
   return (
     <div>
       <div className="flex justify-center items-center py-2 bg-gray-800 shadow-md">
@@ -54,6 +61,7 @@ export default function SportSelector() {
               href={sport.path}
               key={sport.value}
               className="bg-gray-700 text-gray-100 px-6 py-2 rounded-md mx-2 my-2"
+              onClick={() => setSelectedSport(null)}
             >
               {sport.label}
             </Link>
@@ -61,7 +69,7 @@ export default function SportSelector() {
             <div
               className="bg-gray-700 text-gray-100 px-6 py-2 rounded-md mx-2 my-2 cursor-not-allowed"
               key={sport.value}
-              onClick={() => setSelectedSport(sport.value)}
+              onClick={() => handleClickUnavailableSport(sport)}
             >
               {sport.label}
             </div>
