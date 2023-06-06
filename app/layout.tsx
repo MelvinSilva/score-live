@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import SportSelector from "./SportSelector";
+import SportSelector from "./components/SportSelector";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
