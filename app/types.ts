@@ -43,8 +43,6 @@ export type TennisChampionship = {
   stageId: string;
 };
 
-
-
 ///////////////// FOOT /////////////////
 
 export interface TeamFoot {

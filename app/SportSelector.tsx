@@ -70,7 +70,7 @@ export default function SportSelector() {
       </div>
       {selectedSport && (
         <div className="text-center text-red-600">
-          {selectedSport} n'est pas disponible actuellement
+          {selectedSport} n&apos;est pas disponible actuellement
         </div>
       )}
     </div>

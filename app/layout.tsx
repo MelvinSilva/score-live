@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "./components/Header";
 import SportSelector from "./SportSelector";
 import "./globals.css";
 import { Inter } from "next/font/google";
