@@ -136,20 +136,22 @@ const FootballList = () => {
     };
 
     return (
-      <div className="text-sm flex flex-wrap justify-center mb-4">
-        {countries.map((country) => (
-          <button
-            key={country}
-            className={`mr-2 ml-2 mb-2 px-2 py-0 text-xl justify-center rounded-lg ${
-              activeTab === country
-                ? "border-2 border-gray-300 text-white"
-                : "text-gray-500"
-            } sm:w-auto sm:px-4 sm:py-2`}
-            onClick={() => handleTabClick(country)}
-          >
-            {countryFlags[country]}
-          </button>
-        ))}
+      <div>
+        <div className="text-sm flex flex-wrap justify-center mb-4">
+          {countries.map((country) => (
+            <button
+              key={country}
+              className={`mr-2 ml-2 mb-2 px-2 py-0 text-xl justify-center rounded-lg ${
+                activeTab === country
+                  ? "border-2 border-gray-300 text-white"
+                  : "text-gray-500"
+              } sm:w-auto sm:px-4 sm:py-2`}
+              onClick={() => handleTabClick(country)}
+            >
+              {countryFlags[country]}
+            </button>
+          ))}
+        </div>
       </div>
     );
   };
@@ -183,6 +185,9 @@ const FootballList = () => {
 
   return (
     <div className="w-full mx-auto bg-gray-100">
+      <p className="w-full mx-auto bg-gray-200 font-semibold py-1 px-4 text-sm hover:bg-gray-400 center text-center">
+        FOOTBALL
+      </p>
       <br />
       {renderTabs()}
       <div className="max-w-screen-md mx-auto">

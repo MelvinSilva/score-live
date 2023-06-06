@@ -1,4 +1,5 @@
 import Header from "./Header";
+import SportSelector from "./SportSelector";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -18,6 +19,9 @@ export default function RootLayout({
     <html lang="fr">
       <body className={`${inter.className} w-full mx-auto bg-gray-100`}>
         <Header />
+        <div>
+          <SportSelector />
+        </div>
         {children}
       </body>
     </html>

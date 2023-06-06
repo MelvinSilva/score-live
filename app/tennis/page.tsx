@@ -191,6 +191,9 @@ const TennisList = () => {
 
   return (
     <div className="w-full mx-auto bg-gray-100">
+      <p className="w-full mx-auto bg-gray-200 font-semibold py-1 px-4 text-sm hover:bg-gray-400 center text-center">
+        TENNIS
+      </p>
       <br />
       {renderTabs()}
       <div className="max-w-screen-md mx-auto">
