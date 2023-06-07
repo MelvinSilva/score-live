@@ -210,8 +210,8 @@ export default function ResultTennisTournament({
                       ) : (
                         <Image
                           src="/anonymous.jpeg"
-                          width={80}
-                          height={80}
+                          width={60}
+                          height={60}
                           alt="Away Player"
                           className="rounded-full"
                         />
@@ -310,8 +310,8 @@ export default function ResultTennisTournament({
                       ) : (
                         <Image
                           src="/anonymous.jpeg"
-                          width={80}
-                          height={80}
+                          width={60}
+                          height={60}
                           alt="Away Player"
                           className="rounded-full"
                         />
