@@ -126,11 +126,11 @@ export default function ResultTennisTournament({
         {rounds.map((round) => (
           <button
             key={round}
-            className={`mr-4 mb-2 px-4 py-2 rounded-lg ${
+            className={`mr-2 mb-2 px-3 py-1 rounded-lg ${
               activeTab === round
                 ? "bg-gray-600 text-white"
                 : "bg-gray-200 text-gray-500"
-            } sm:w-auto sm:px-2 sm:py-3`}
+            } sm:mr-4 sm:mb-0 sm:px-4 sm:py-2 sm:text-base`}
             onClick={() => setActiveTab(round)}
           >
             {round}
@@ -169,22 +169,26 @@ export default function ResultTennisTournament({
       </Link>
       <br />
       <br />
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         {seasons?.TOURNAMENT_IMAGE && (
-          <Image
-            src={seasons?.TOURNAMENT_IMAGE}
-            width={100}
-            height={100}
-            alt="Tournament"
-            className="self-center w-20 h-20"
-          />
+          <div className="rounded-lg overflow-hidden bg-white flex items-center justify-center w-10 h-10 mr-2">
+            <Image
+              src={seasons?.TOURNAMENT_IMAGE}
+              width={100}
+              height={100}
+              alt="Tournament"
+              className="w-9 h-9"
+            />
+          </div>
         )}
+        <div className="flex flex-col">
+          <h3 className="text-md font-bold text-gray-600">
+            {seasons?.LEAGUE_NAME}
+          </h3>
+        </div>
       </div>
-      <br />
 
-      <h3 className="text-md font-bold mb-4 text-center text-gray-600">
-        {seasons?.LEAGUE_NAME}
-      </h3>
+      <br />
 
       {tournamentResult && tournamentResult.length > 0 ? (
         <div>

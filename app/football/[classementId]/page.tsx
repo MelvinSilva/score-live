@@ -171,36 +171,42 @@ export default function ClassementTournament({
       </Link>
       <br />
       <br />
-      <div className="flex justify-center items-center mb-4">
-        <Image
-          src={seasons.TOURNAMENT_IMAGE}
-          width={100}
-          height={100}
-          alt="Tournament"
-          className="self-center w-20 h-20"
-        />
+      <div className="flex items-center justify-center">
+        {seasons?.TOURNAMENT_IMAGE && (
+          <div className="rounded-lg overflow-hidden bg-white flex items-center justify-center w-10 h-10 mr-2">
+            <Image
+              src={seasons?.TOURNAMENT_IMAGE}
+              width={100}
+              height={100}
+              alt="Tournament"
+              className="w-9 h-9"
+            />
+          </div>
+        )}
+        <div className="flex flex-col">
+          <h3 className="text-md font-bold text-gray-600">
+            {tournament?.LEAGUE_NAME} ({tournament?.COUNTRY_NAME})
+          </h3>
+        </div>
       </div>
-
-      <h3 className="text-md font-bold mb-4 text-center text-gray-600 tracking-widest">
-        {tournament?.LEAGUE_NAME} ({tournament?.COUNTRY_NAME})
-      </h3>
+      <br />
       <div className="flex justify-center mb-4">
         <button
-          className={`mr-4 px-4 py-2 rounded-lg ${
+          className={`mr-2 mb-2 px-3 py-1 rounded-lg ${
             selectedOption === "classement"
               ? "bg-gray-600 text-white"
               : "bg-gray-200 text-gray-500"
-          }`}
+          } sm:mr-4 sm:mb-0 sm:px-4 sm:py-2 sm:text-base`}
           onClick={() => handleOptionChange("classement")}
         >
           Classement
         </button>
         <button
-          className={`px-4 py-2 rounded-lg ${
+          className={`mr-2 mb-2 px-3 py-1 rounded-lg ${
             selectedOption === "buteurs"
               ? "bg-gray-600 text-white"
               : "bg-gray-200 text-gray-500"
-          }`}
+          } sm:mr-4 sm:mb-0 sm:px-4 sm:py-2 sm:text-base`}
           onClick={() => handleOptionChange("buteurs")}
         >
           Top buteurs
