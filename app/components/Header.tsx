@@ -11,15 +11,17 @@ export default function Header() {
         className="flex items-center text-center text-white text-3xl font-bold"
       >
         <span className="text-gray-200">S</span>
-        <span className="text-gray-400">C</span>
-        <IoFootballOutline className="h-10 text-white" />
-        <span className="text-gray-200">R</span>
-        <span className="text-gray-400">E</span>&nbsp;&nbsp;
-        <span className="text-gray-200">S</span>
         <span className="text-gray-400">P</span>
+        <IoFootballOutline className="h-10 text-white" />
+        <span className="text-gray-400">R</span>
+        <span className="text-gray-200">T</span>
+        <span className="text-gray-400">Y</span>&nbsp;
+        <span className="text-gray-200">S</span>
+        <span className="text-gray-400">C</span>
         <IoTennisballOutline className="h-10 text-white" />
         <span className="text-gray-200">R</span>
-        <span className="text-gray-400">T</span>
+        <span className="text-gray-400">E</span>
+        <span className="text-gray-200">S</span>
       </a>
       {/* <p className="text-gray-400 text-xs font-light">
         Consultation de résultat sportif
@@ -29,8 +31,8 @@ export default function Header() {
           <FaBars className="block h-6 w-6" />
         </button>
       </div> */}
-      <a href="/" className="absolute left-4 top-6 text-white hover:text-white">
-        <FaHome className="h-5 w-5" />
+      <a href="/" className="absolute left-4 top-7 text-white hover:text-white">
+        <FaHome className="h-4 w-4" />
       </a>
     </header>
   );
