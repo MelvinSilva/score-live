@@ -71,13 +71,20 @@ const FootballList = () => {
             const isAllowedChampionship = allowedChampionships.includes(
               item.LEAGUE_NAME
             );
-            const isExcludedSuperCup =
-              item.LEAGUE_NAME === "Super Coupe" &&
-              item.COUNTRY_NAME === "Espagne";
+            const excludedSuperCup = [
+              "Coupe",
+              "Trophée",
+              "Cup",
+              "FA",
+              "Trophy",
+              "Copa",
+            ];
 
-            return (
-              isAllowedCountry && isAllowedChampionship && !isExcludedSuperCup
+            const isExcludedSuperCup = excludedSuperCup.some((word) =>
+              item.LEAGUE_NAME.includes(word)
             );
+
+            return isAllowedCountry && !isExcludedSuperCup;
           })
           .map((item: any) => ({
             id: item.id,
@@ -141,7 +148,7 @@ const FootballList = () => {
 
     return (
       <div>
-        <div className="text-sm flex flex-wrap justify-center mb-4">
+        <div className="text-sm flex flex-wrap justify-center mb-2">
           {countries.map((country) => (
             <button
               key={country}

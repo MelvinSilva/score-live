@@ -136,7 +136,7 @@ const TennisList = () => {
     };
 
     return (
-      <div className="text-sm flex flex-wrap justify-center mb-4">
+      <div className="text-sm flex flex-wrap justify-center mb-2">
         {countries.map((country) => (
           <button
             key={country}
