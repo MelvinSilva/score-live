@@ -7,14 +7,14 @@ type TennisChampionship = {
   name: string;
   image: string;
   country: string;
-  url: string; // Nouveau champ pour l'URL du championnat
+  url: string;
   stageId: string;
 };
 
 const TennisList = () => {
   const [championships, setChampionships] = useState<TennisChampionship[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [activeTab, setActiveTab] = useState<string>("France"); // Onglet actif par défaut
+  const [activeTab, setActiveTab] = useState<string>("France");
 
   useEffect(() => {
     const fetchChampionships = async () => {
@@ -77,6 +77,7 @@ const TennisList = () => {
               "Espagne",
               "Portugal",
               "Italie",
+              "Allemagne",
             ];
             return (
               countriesOrder.indexOf(a.country) -
@@ -85,9 +86,10 @@ const TennisList = () => {
           });
 
         setChampionships(filteredChampionships);
+        setActiveTab("France");
       } catch (error) {
         console.error(
-          "Erreur lors de la récupération des championnats de football :",
+          "Erreur lors de la récupération des championnats de tennis :",
           error
         );
       } finally {

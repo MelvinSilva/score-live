@@ -199,12 +199,20 @@ export default function ResultTennisTournament({
                 <div key={result.EVENT_ID} className="p-4 rounded-lg bg-white">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      {result.HOME_IMAGES && (
+                      {result.HOME_IMAGES ? (
                         <Image
                           src={result.HOME_IMAGES[0]}
                           width={60}
                           height={60}
                           alt="Home Player"
+                          className="rounded-full"
+                        />
+                      ) : (
+                        <Image
+                          src="/anonymous.jpeg"
+                          width={80}
+                          height={80}
+                          alt="Away Player"
                           className="rounded-full"
                         />
                       )}
@@ -291,11 +299,19 @@ export default function ResultTennisTournament({
                       </p>
                     </div>
                     <div className="flex items-center">
-                      {result.AWAY_IMAGES && (
+                      {result.AWAY_IMAGES ? (
                         <Image
                           src={result.AWAY_IMAGES[0]}
                           width={60}
                           height={60}
+                          alt="Away Player"
+                          className="rounded-full"
+                        />
+                      ) : (
+                        <Image
+                          src="/anonymous.jpeg"
+                          width={80}
+                          height={80}
                           alt="Away Player"
                           className="rounded-full"
                         />

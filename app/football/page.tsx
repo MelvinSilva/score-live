@@ -124,7 +124,11 @@ const FootballList = () => {
   const renderTabs = () => {
     const countries = Array.from(
       new Set(championships.map((championship) => championship.country))
-    );
+    ).sort((a, b) => {
+      if (a === "France") return -1; // Mettre la France en premier
+      if (b === "France") return 1;
+      return a.localeCompare(b);
+    });
 
     const countryFlags: { [country: string]: string } = {
       Allemagne: "🇩🇪",
