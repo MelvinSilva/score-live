@@ -8,7 +8,7 @@ export default function Header() {
     <header className="flex flex-col items-center justify-center w-full py-4 bg-gray-900 shadow-md relative">
       <a
         href="/"
-        className="flex items-center text-center text-white text-3xl font-bold"
+        className="flex items-center text-center text-white text-2xl font-bold"
       >
         <span className="text-gray-200">S</span>
         <span className="text-gray-400">P</span>

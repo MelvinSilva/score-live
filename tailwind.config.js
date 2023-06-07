@@ -7,7 +7,7 @@ module.exports = {
   ],
   theme: {
     letterSpacing: {
-      1: "1.2em",
+      1: "1em",
     },
 
     extend: {
