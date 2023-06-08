@@ -357,7 +357,7 @@ export default function ClassementTournament({
           <div className="max-w-screen-md mx-auto">
             {meilleursButeurs.length === 0 && !loading ? (
               <div className="text-center text-gray-600">
-                Il n'y a pas de résultats disponibles.
+                Il n&apos;y a pas de résultats disponibles.
               </div>
             ) : (
               <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
