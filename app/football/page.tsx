@@ -78,6 +78,7 @@ const FootballList = () => {
               "FA",
               "Trophy",
               "Copa",
+              "Coppa",
             ];
 
             const isExcludedSuperCup = excludedSuperCup.some((word) =>

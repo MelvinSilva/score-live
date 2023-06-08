@@ -13,14 +13,15 @@ export default function ClassementTournament({
   const [seasons, setSeasons] = useState<SeasonFoot | null>(null);
   const [tournament, setTournament] = useState<TournamentFoot | null>(null);
   const [teams, setTeams] = useState<TeamFoot[]>([]);
-  const [seasonId, setSeasonId] = useState<number | null>(null);
-  const [stageId, setStageId] = useState<number | null>(null);
+  const [seasonId, setSeasonId] = useState<string | null>(null);
+  const [stageId, setStageId] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedOption, setSelectedOption] = useState<
     "classement" | "buteurs"
   >("classement");
   const [meilleursButeurs, setMeilleursButeurs] = useState<Buteur[]>([]);
 
+  //////////////// FETCH SAISONS ///////////////
   useEffect(() => {
     const fetchSeasons = async () => {
       try {
@@ -57,6 +58,7 @@ export default function ClassementTournament({
     fetchSeasons();
   }, [params.classementId]);
 
+  //////////////// FETCH EQUIPE CLASSEMENT ///////////////
   useEffect(() => {
     const fetchTeams = async () => {
       setLoading(true); // spinner loading
@@ -96,9 +98,16 @@ export default function ClassementTournament({
     }
   }, [seasonId, stageId]);
 
+  //////////////// FETCH BUTEUR ///////////////
   useEffect(() => {
     const fetchButeurs = async () => {
+      if (selectedOption !== "buteurs") {
+        setMeilleursButeurs([]); // Réinitialiser le tableau des meilleurs buteurs
+        return;
+      }
+
       if (!seasonId || !stageId) {
+        setMeilleursButeurs([]); // Réinitialiser le tableau des meilleurs buteurs
         return;
       }
 
@@ -121,8 +130,12 @@ export default function ClassementTournament({
 
         const response = await axios.request(options);
         const result: { ROWS: Buteur[] } = response.data;
-        const filteredButeurs = result.ROWS.slice(0, 50); // Récupére les 50 premier buteurs
-        setMeilleursButeurs(filteredButeurs);
+        if (result.ROWS.length === 0) {
+          setMeilleursButeurs([]); // Réinitialiser le tableau des meilleurs buteurs
+        } else {
+          const filteredButeurs = result.ROWS.slice(0, 50); // Récupère les 50 premiers buteurs
+          setMeilleursButeurs(filteredButeurs);
+        }
       } catch (error) {
         console.error(
           "Erreur lors de la récupération des meilleurs buteurs",
@@ -137,10 +150,20 @@ export default function ClassementTournament({
     if (seasonId && stageId) {
       fetchButeurs();
     }
-  }, [seasonId, stageId]);
+  }, [seasonId, stageId, selectedOption]);
 
   const handleOptionChange = (option: "classement" | "buteurs") => {
     setSelectedOption(option);
+  };
+
+  const handleSeasonChange = (seasonId: string) => {
+    const selectedSeason = seasons?.SEASONS.find(
+      (season) => season.SEASON_ID === seasonId
+    );
+    if (selectedSeason) {
+      setSeasonId(selectedSeason.SEASON_ID);
+      setStageId(selectedSeason.SEASON_TOURNAMENT_STAGE_ID);
+    }
   };
 
   if (loading) {
@@ -171,24 +194,44 @@ export default function ClassementTournament({
       </Link>
       <br />
       <br />
-      <div className="flex items-center justify-center">
-        {seasons?.TOURNAMENT_IMAGE && (
-          <div className="rounded-lg overflow-hidden bg-white flex items-center justify-center w-10 h-10 mr-2">
-            <Image
-              src={seasons?.TOURNAMENT_IMAGE}
-              width={100}
-              height={100}
-              alt="Tournament"
-              className="w-9 h-9"
-            />
+      <div className="flex flex-col items-center">
+        <div className="flex items-center">
+          {seasons?.TOURNAMENT_IMAGE && (
+            <div className="rounded-lg overflow-hidden bg-white flex items-center justify-center w-10 h-10 mr-2">
+              <Image
+                src={seasons?.TOURNAMENT_IMAGE}
+                width={100}
+                height={100}
+                alt="Tournament"
+                className="w-9 h-9"
+              />
+            </div>
+          )}
+          <div>
+            <h3 className="text-md font-bold text-gray-600">
+              {tournament?.LEAGUE_NAME} ({tournament?.COUNTRY_NAME})
+            </h3>
           </div>
-        )}
-        <div className="flex flex-col">
-          <h3 className="text-md font-bold text-gray-600">
-            {tournament?.LEAGUE_NAME} ({tournament?.COUNTRY_NAME})
-          </h3>
+        </div>
+        <div className="mt-2">
+          <label htmlFor="season-select" className="text-gray-600">
+            Saison :&nbsp;
+          </label>
+          <select
+            id="season-select"
+            className="w-30 py-1 px-2 rounded-lg bg-white border-gray-300 border focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            value={seasonId || ""}
+            onChange={(e) => handleSeasonChange(e.target.value)}
+          >
+            {seasons?.SEASONS.map((season) => (
+              <option key={season.SEASON_ID} value={season.SEASON_ID}>
+                {season.SEASON_NAME}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
+
       <br />
       <div className="flex justify-center mb-4">
         <button
@@ -312,71 +355,77 @@ export default function ClassementTournament({
         <div className="w-full mx-auto bg-gray-100">
           <br />
           <div className="max-w-screen-md mx-auto">
-            <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
-              <thead className="bg-white">
-                <tr>
-                  <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-500 uppercase">
-                    #
-                  </th>
-                  <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 uppercase text-left">
-                    Joueur
-                  </th>
-                  <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 uppercase">
-                    B
-                  </th>
-                  <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 uppercase">
-                    P
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {meilleursButeurs.map((buteur) => (
-                  <tr key={buteur.TS_PLAYER_ID}>
-                    <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
-                      {buteur.TS_RANK}
-                    </td>
-                    <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm">
-                      <div className="flex items-center">
-                        <div className="mr-2">
-                          {buteur.TS_IMAGE_PATH ? (
-                            <Image
-                              width={50}
-                              height={50}
-                              src={buteur.TS_IMAGE_PATH}
-                              alt="Player"
-                              className="w-8 h-8 rounded-full"
-                            />
-                          ) : (
-                            <Image
-                              width={50}
-                              height={50}
-                              src={"/anonymous.jpeg"}
-                              alt="Player"
-                              className="w-8 h-6 rounded-full"
-                            />
-                          )}
-                        </div>
-                        <div>
-                          <div className="font-semibold text-gray-600">
-                            {buteur.TS_PLAYER_NAME_PA}
-                          </div>
-                          <div className="text-xs text-gray-400">
-                            {buteur.TEAM_NAME}
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-
-                    <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
-                      {buteur.TS_PLAYER_GOALS}
-                    </td>
-                    <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
-                      {buteur.TS_PLAYER_ASISTS}
-                    </td>
+            {meilleursButeurs.length === 0 && !loading ? (
+              <div className="text-center text-gray-600">
+                Il n'y a pas de résultats disponibles.
+              </div>
+            ) : (
+              <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
+                <thead className="bg-white">
+                  <tr>
+                    <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-500 uppercase">
+                      #
+                    </th>
+                    <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 uppercase text-left">
+                      Joueur
+                    </th>
+                    <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 uppercase">
+                      B
+                    </th>
+                    <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-600 uppercase">
+                      P
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {meilleursButeurs.map((buteur) => (
+                    <tr key={buteur.TS_PLAYER_ID}>
+                      <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
+                        {buteur.TS_RANK}
+                      </td>
+                      <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm">
+                        <div className="flex items-center">
+                          <div className="mr-2">
+                            {buteur.TS_IMAGE_PATH ? (
+                              <Image
+                                width={50}
+                                height={50}
+                                src={buteur.TS_IMAGE_PATH}
+                                alt="Player"
+                                className="w-8 h-8 rounded-full"
+                              />
+                            ) : (
+                              <Image
+                                width={50}
+                                height={50}
+                                src={"/anonymous.jpeg"}
+                                alt="Player"
+                                className="w-8 h-6 rounded-full"
+                              />
+                            )}
+                          </div>
+                          <div>
+                            <div className="font-semibold text-gray-600">
+                              {buteur.TS_PLAYER_NAME_PA}
+                            </div>
+                            <div className="text-xs text-gray-400">
+                              {buteur.TEAM_NAME}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
+                        {buteur.TS_PLAYER_GOALS}
+                      </td>
+                      <td className="px-2 sm:px-6 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-center text-gray-600">
+                        {buteur.TS_PLAYER_ASISTS}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
             <br />
             <br />
           </div>

@@ -60,8 +60,9 @@ export interface TeamFoot {
 export interface SeasonFoot {
   TOURNAMENT_IMAGE: string;
   SEASONS: {
-    SEASON_ID: number;
-    SEASON_TOURNAMENT_STAGE_ID: number;
+    SEASON_ID: string;
+    SEASON_TOURNAMENT_STAGE_ID: string;
+    SEASON_NAME: string;
   }[];
 }
 
