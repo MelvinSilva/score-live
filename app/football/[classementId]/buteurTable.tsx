@@ -14,7 +14,7 @@ const ButeursTable: React.FC<Props> = ({ meilleursButeurs }) => {
       <div className="max-w-screen-md mx-auto">
         {meilleursButeurs.length === 0 ? (
           <div className="text-center text-gray-600">
-            Désolé, nous n&apos;avons pas d'informations disponibles.
+            Désolé, nous n&apos;avons pas d&apos;informations disponibles.
           </div>
         ) : (
           <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
