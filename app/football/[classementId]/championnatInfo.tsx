@@ -23,7 +23,7 @@ const ChampionnatInfo: React.FC<Props> = ({ tournament }) => {
       )}
       <div>
         <h3 className="text-md font-bold text-gray-600">
-          {tournament?.LEAGUE_NAME} ({tournament?.COUNTRY_NAME})
+          {tournament?.LEAGUE_NAME}
         </h3>
       </div>
     </div>

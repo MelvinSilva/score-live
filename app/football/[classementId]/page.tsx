@@ -190,8 +190,9 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
       </Link>
       <br />
       <br />
-      <div className="flex flex-col items-center">
+      <div className="flex justify-center items-center">
         <ChampionnatInfo tournament={tournament} />
+        &ensp;
         <SaisonSelect
           seasons={seasons}
           selectedSeasonId={seasonId}

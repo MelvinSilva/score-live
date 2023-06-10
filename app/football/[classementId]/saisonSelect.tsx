@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { SeasonFoot } from "@/app/types";
 
@@ -13,13 +14,10 @@ const SaisonSelect: React.FC<Props> = ({
   onSeasonChange,
 }) => {
   return (
-    <div className="mt-2">
-      <label htmlFor="season-select" className="text-gray-600">
-        Saison :&nbsp;
-      </label>
+    <div className="flex justify-center">
       <select
         id="season-select"
-        className="w-30 py-1 px-2 rounded-lg bg-white border-gray-300 border focus:outline-none focus:ring-1 focus:ring-indigo-500"
+        className="w-30 text-sm py-1 px-2 rounded-lg bg-white border-gray-300 border focus:outline-none focus:ring-1 focus:ring-indigo-500 text-gray-600"
         value={selectedSeasonId || ""}
         onChange={(e) => onSeasonChange(e.target.value)}
       >

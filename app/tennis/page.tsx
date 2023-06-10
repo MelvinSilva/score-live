@@ -136,11 +136,11 @@ const TennisList = () => {
     };
 
     return (
-      <div className="text-sm flex flex-wrap justify-center mb-2">
+      <div className="flex flex-wrap justify-center mb-2">
         {countries.map((country) => (
           <button
             key={country}
-            className={`mr-2 ml-2 mb-2 px-2 py-0 text-xl justify-center rounded-lg ${
+            className={`mr-2 ml-2 mb-2 px-1 py-0 text-xl justify-center rounded-lg ${
               activeTab === country
                 ? "border-2 border-gray-300 text-white"
                 : "text-gray-500"
