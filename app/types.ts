@@ -69,6 +69,7 @@ export interface SeasonFoot {
 export interface TournamentFoot {
   COUNTRY_NAME: string;
   LEAGUE_NAME: string;
+  TOURNAMENT_IMAGE: string;
 }
 
 export interface Buteur {
@@ -80,3 +81,17 @@ export interface Buteur {
   TS_IMAGE_PATH: string;
   TEAM_NAME: string;
 }
+
+// export interface Resultat {
+//   EVENT_ID: string;
+//   START_TIME: number;
+//   STAGE_TYPE: string;
+//   STAGE: string;
+//   ROUND: string;
+//   HOME_NAME: string;
+//   HOME_SCORE_CURRENT: string;
+//   AWAY_NAME: string;
+//   AWAY_SCORE_CURRENT: string;
+// }
+
+// export type Round = string[];
