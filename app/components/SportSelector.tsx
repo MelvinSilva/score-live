@@ -31,14 +31,14 @@ const sports: SportOption[] = [
   {
     value: "Basketball",
     label: <IoBasketball />,
-    path: "/basketball",
-    available: false,
+    path: "/basket",
+    available: true,
   },
   {
     value: "Rugby",
     label: <IoAmericanFootball />,
     path: "/rugby",
-    available: false,
+    available: true,
   },
 ];
 
@@ -54,7 +54,7 @@ export default function SportSelector() {
 
   return (
     <div>
-      <div className="flex flex-col items-center py-1 bg-gray-800 shadow-md">
+      <div className="flex flex-col items-center py-1 shadow-md sport-selector">
         <span className="inline-flex text-center animate-background-shine bg-[linear-gradient(110deg,#939393,45%,#1e293b,55%,#939393)] bg-[length:250%_100%] tracking-widest bg-clip-text text-xs text-transparent">
           CHOIX DU SPORT
         </span>
@@ -81,11 +81,6 @@ export default function SportSelector() {
           )}
         </div>
       </div>
-      {selectedSport && (
-        <div className="text-center text-red-600">
-          {selectedSport} n&apos;est pas disponible actuellement
-        </div>
-      )}
     </div>
   );
 }

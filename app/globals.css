@@ -38,5 +38,9 @@
 
 .tab-button.active {
   background-color: #1f2937;
-  color: #ffffff;
+  color: #ffffffe1;
+}
+
+.sport-selector {
+  background-color: #1f2937;
 }
