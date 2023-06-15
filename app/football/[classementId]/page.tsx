@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { Buteur, SeasonFoot, TeamFoot, TournamentFoot } from "@/app/types";
@@ -188,6 +188,7 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
           Retour
         </button>
       </Link>
+
       <br />
       <br />
       <div className="flex justify-center items-center">

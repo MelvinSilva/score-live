@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import SportSelector from "./components/SportSelector";
 import "./globals.css";
@@ -23,6 +24,7 @@ export default function RootLayout({
           <SportSelector />
         </div>
         {children}
+        <Footer />
       </body>
     </html>
   );

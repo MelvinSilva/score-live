@@ -25,6 +25,7 @@ const FootballList = () => {
         const options = {
           method: "GET",
           url: "https://flashlive-sports.p.rapidapi.com/v1/tournaments/stages",
+          next: { revalidate: 1 },
           params: {
             sport_id: "1",
             locale: "fr_FR",
@@ -47,29 +48,10 @@ const FootballList = () => {
           "Portugal",
         ];
 
-        const allowedChampionships = [
-          "Premier League",
-          "Championship",
-          "Ligue 1",
-          "Ligue 2",
-          "National",
-          "Bundesliga",
-          "2. Bundesliga",
-          "Serie A",
-          "Serie B",
-          "LaLiga",
-          "LaLiga2",
-          "Liga Portugal",
-          "Liga Portugal 2",
-        ];
-
         const filteredChampionships = data
           .filter((item: any) => {
             const isAllowedCountry = allowedCountries.includes(
               item.COUNTRY_NAME
-            );
-            const isAllowedChampionship = allowedChampionships.includes(
-              item.LEAGUE_NAME
             );
             const excludedSuperCup = [
               "Coupe",
