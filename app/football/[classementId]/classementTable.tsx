@@ -100,7 +100,6 @@ const ClassementTable: React.FC<Props> = ({ teams }) => {
         </tbody>
       </table>
       <br />
-      <br />
     </div>
   );
 };
