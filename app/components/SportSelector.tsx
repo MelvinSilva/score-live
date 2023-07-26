@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   IoFootball,
   IoBasketball,
@@ -44,7 +44,6 @@ const sports: SportOption[] = [
 
 export default function SportSelector() {
   const [selectedSport, setSelectedSport] = useState<string | null>(null);
-  const [opacity, setOpacity] = useState(0.1);
 
   const handleClickUnavailableSport = (sport: SportOption) => {
     setSelectedSport(sport.value);
@@ -53,28 +52,9 @@ export default function SportSelector() {
     }, 5000);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const bodyHeight = document.body.clientHeight;
-      const opacityValue = 0.1 + scrollY / (bodyHeight - windowHeight);
-      setOpacity(opacityValue);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <div>
-      <div
-        className="flex flex-col items-center py-1 shadow-md sport-selector fixed bottom-4 left-8 right-8 rounded-xl"
-        style={{ backgroundColor: `rgba(31, 41, 55, ${opacity})` }}
-      >
+      <div className="flex flex-col items-center py-1 shadow-md sport-selector fixed bottom-4 left-8 right-8 rounded-xl">
         {/*  <span className="inline-flex text-center animate-background-shine bg-[linear-gradient(110deg,#939393,45%,#1e293b,55%,#939393)] bg-[length:250%_100%] tracking-widest bg-clip-text text-xs text-transparent">
           CHOIX DU SPORT
         </span> */}
