@@ -54,7 +54,7 @@ export default function SportSelector() {
 
   return (
     <div>
-      <div className="flex flex-col items-center py-1 shadow-md sport-selector fixed bottom-4 left-8 right-8 rounded-xl">
+      <div className="flex flex-col items-center py-1 shadow-md sport-selector fixed bottom-5 left-8 right-8 rounded-xl">
         {/*  <span className="inline-flex text-center animate-background-shine bg-[linear-gradient(110deg,#939393,45%,#1e293b,55%,#939393)] bg-[length:250%_100%] tracking-widest bg-clip-text text-xs text-transparent">
           CHOIX DU SPORT
         </span> */}
