@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import { allowedCountries } from "./components/filter/allowedCountries";
+import { excludedSuperCup } from "./components/filter/excludedSuperCup";
 
 type FootballChampionship = {
   name: string;
@@ -39,29 +41,11 @@ const FootballList = () => {
         const response = await axios.request(options);
         const data = response.data.DATA;
 
-        const allowedCountries = [
-          "Allemagne",
-          "Italie",
-          "France",
-          "Angleterre",
-          "Espagne",
-          "Portugal",
-        ];
-
         const filteredChampionships = data
           .filter((item: any) => {
             const isAllowedCountry = allowedCountries.includes(
               item.COUNTRY_NAME
             );
-            const excludedSuperCup = [
-              "Coupe",
-              "Trophée",
-              "Cup",
-              "FA",
-              "Trophy",
-              "Copa",
-              "Coppa",
-            ];
 
             const isExcludedSuperCup = excludedSuperCup.some((word) =>
               item.LEAGUE_NAME.includes(word)
