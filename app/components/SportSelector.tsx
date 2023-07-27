@@ -74,7 +74,10 @@ export default function SportSelector() {
         <div className="flex ">
           {sports.map((sport, index) =>
             sport.available ? (
-              <div className="flex flex-col items-center bg-gray-600 text-white px-4 py-1 rounded-md mx-1 my-2 w-12 lg:w-32 lg:text-2xl">
+              <div
+                key={sport.value}
+                className="flex flex-col items-center bg-gray-600 text-white px-4 py-1 rounded-md mx-1 my-2 w-12 lg:w-32 lg:text-2xl"
+              >
                 <Link
                   href={sport.path}
                   key={sport.value}
