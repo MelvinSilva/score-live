@@ -68,24 +68,22 @@ export default function SportSelector() {
   return (
     <div>
       <div className="flex flex-col items-center py-0 shadow-md sport-selector fixed bottom-0 left-0 right-0">
-        {/*  <span className="inline-flex text-center animate-background-shine bg-[linear-gradient(110deg,#939393,45%,#1e293b,55%,#939393)] bg-[length:250%_100%] tracking-widest bg-clip-text text-xs text-transparent">
-          CHOIX DU SPORT
-        </span> */}
-        <div className="flex ">
+        <div className="flex">
           {sports.map((sport, index) =>
             sport.available ? (
               <div
                 key={sport.value}
-                className="flex flex-col items-center bg-gray-600 text-white px-4 py-1 rounded-md mx-1 my-2 w-12 lg:w-32 lg:text-2xl"
+                className={`flex flex-col items-center bg-gray-600 text-white px-4 py-1 rounded-md mx-1 my-2 w-16 lg:w-32 lg:text-2xl ${
+                  selectedSport === sport.value ? "bg-red-800" : "" // Ajoutez la classe bg-gray-800 si le bouton est sélectionné
+                }`}
+                onClick={() => setSelectedSport(sport.value)} // Mettez à jour le bouton sélectionné au clic
               >
-                <Link
-                  href={sport.path}
-                  key={sport.value}
-                  onClick={() => setSelectedSport(null)}
-                >
-                  {sport.label}
+                <Link href={sport.path}>
+                  <div className="flex flex-col items-center">
+                    {sport.label}
+                    <p className="text-sportselector">{sport.text}</p>
+                  </div>
                 </Link>
-                <p className="text-sportselector">{sport.text}</p>
               </div>
             ) : (
               <div
