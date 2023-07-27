@@ -60,7 +60,7 @@ export default function ActualityList() {
           className="flex flex-col mx-auto items-center bg-white border mt-3 p-2 border-gray-200 rounded-lg shadow xs:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ml-2 mr-2"
         >
           <Image
-            className="object-cover w-full rounded-t-lg h-96 xs:h-auto xs:w-auto xs:rounded-none xs:rounded-lg"
+            className="object-cover w-full rounded-t-lg h-96 xs:h-auto xs:w-auto xs:rounded-lg"
             src={actu.ARTICLE.IMAGES[1].URL}
             width={300}
             height={300}
