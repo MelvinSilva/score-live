@@ -5,6 +5,7 @@ const nextConfig = {
       "www.flashscore.com",
       "cdn.dribbble.com",
       "st4.depositphotos.com",
+      "resizer.enetpulse.com",
     ],
   },
 };
