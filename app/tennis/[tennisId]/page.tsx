@@ -122,7 +122,7 @@ export default function ResultTennisTournament({
       .filter((round, index, self) => self.indexOf(round) === index);
 
     return (
-      <div className="flex justify-center mb-2 ml-2 mr-2">
+      <div className="flex justify-center ml-2 mr-2">
         <div className="flex" style={{ overflowX: "auto" }}>
           {rounds.map((round) => (
             <button

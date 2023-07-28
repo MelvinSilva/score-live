@@ -17,7 +17,7 @@ const ButeursTable: React.FC<Props> = ({ meilleursButeurs }) => {
             Désolé, nous n&apos;avons pas d&apos;informations disponibles.
           </div>
         ) : (
-          <table className="w-full mx-auto divide-y divide-gray-200 rounded-lg overflow-hidden shadow-lg">
+          <table className="w-full mx-auto divide-y divide-gray-200 overflow-hidden shadow-lg">
             <thead className="bg-white">
               <tr>
                 <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-500 uppercase">
