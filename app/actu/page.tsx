@@ -55,7 +55,7 @@ export default function ActualityList() {
         LES DERNIERES ACTUALITÉS
       </p>
       {data.map((actu) => (
-        <a href={`actu/${actu.ID}`}>
+        <a key={actu.ID} href={`actu/${actu.ID}`}>
           <div
             key={actu.ID}
             className="flex flex-col mx-auto items-center bg-white border mt-3 p-2 border-gray-200 rounded-lg shadow xs:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ml-2 mr-2"
