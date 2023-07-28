@@ -55,26 +55,28 @@ export default function ActualityList() {
         LES DERNIERES ACTUALITÉS
       </p>
       {data.map((actu) => (
-        <div
-          key={actu.ID}
-          className="flex flex-col mx-auto items-center bg-white border mt-3 p-2 border-gray-200 rounded-lg shadow xs:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ml-2 mr-2"
-        >
-          <Image
-            className="object-cover w-full rounded-t-lg h-96 xs:h-auto xs:w-auto xs:rounded-lg"
-            src={actu.ARTICLE.IMAGES[1].URL}
-            width={300}
-            height={300}
-            alt={actu.ARTICLE.IMAGES[1].ALT_TEXT}
-          />
-          <div className="flex flex-col justify-between p-2 leading-normal">
-            <h3
-              className="text-l font-bold tracking-tight text-gray-900 dark:text-white"
-              key={actu.ID}
-            >
-              {actu.ARTICLE.TITLE}
-            </h3>
+        <a href={`actu/${actu.ID}`}>
+          <div
+            key={actu.ID}
+            className="flex flex-col mx-auto items-center bg-white border mt-3 p-2 border-gray-200 rounded-lg shadow xs:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ml-2 mr-2"
+          >
+            <Image
+              className="object-cover w-full rounded-t-lg h-96 xs:h-auto xs:w-auto xs:rounded-lg"
+              src={actu.ARTICLE.IMAGES[1].URL}
+              width={300}
+              height={300}
+              alt={actu.ARTICLE.IMAGES[1].ALT_TEXT}
+            />
+            <div className="flex flex-col justify-between p-2 leading-normal">
+              <h3
+                className="text-l font-bold tracking-tight text-gray-900 dark:text-white"
+                key={actu.ID}
+              >
+                {actu.ARTICLE.TITLE}
+              </h3>
+            </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   );
