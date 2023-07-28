@@ -111,24 +111,31 @@ const FootballList = () => {
       Angleterre: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
       Espagne: "🇪🇸",
       Portugal: "🇵🇹",
+      Belgique: "🇧🇪",
+      PaysBas: "🇳🇱",
+      Turquie: "🇹🇷",
+      "Arabie Saoudite": "🇸🇦",
+      MLS: "🇺🇸",
     };
 
     return (
       <div>
-        <div className="flex flex-wrap justify-center mb-2">
-          {countries.map((country) => (
-            <button
-              key={country}
-              className={`mr-2 ml-2 mb-2 px-1 py-0 text-xl justify-center rounded-lg ${
-                activeTab === country
-                  ? "border-2 border-gray-300 text-white"
-                  : "text-gray-500"
-              } sm:w-auto sm:px-4 sm:py-2`}
-              onClick={() => handleTabClick(country)}
-            >
-              {countryFlags[country]}
-            </button>
-          ))}
+        <div className="flex justify-center mb-2 ml-2 mr-2">
+          <div className="flex" style={{ overflowX: "auto" }}>
+            {countries.map((country) => (
+              <button
+                key={country}
+                className={`px-4 py-0 text-2xl justify-center rounded-lg ${
+                  activeTab === country
+                    ? "border-2 border-gray-300 text-white"
+                    : "text-gray-500"
+                } md:w-full md:px-6 md:py-2 md:text-3xl`}
+                onClick={() => handleTabClick(country)}
+              >
+                {countryFlags[country]}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     );

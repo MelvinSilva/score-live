@@ -5,4 +5,9 @@ export const allowedCountries = [
   "Angleterre",
   "Espagne",
   "Portugal",
+  "Belgique",
+  "Pays-bas",
+  "Turquie",
+  "Arabie Saoudite",
+  "MLS",
 ];

@@ -122,20 +122,22 @@ export default function ResultTennisTournament({
       .filter((round, index, self) => self.indexOf(round) === index);
 
     return (
-      <div className="flex flex-wrap justify-center mb-4 text-sm">
-        {rounds.map((round) => (
-          <button
-            key={round}
-            className={`mr-2 mb-2 px-3 py-1 rounded-lg ${
-              activeTab === round
-                ? "bg-gray-600 text-white"
-                : "bg-gray-200 text-gray-500"
-            } sm:mr-4 sm:mb-0 sm:px-4 sm:py-2 sm:text-base`}
-            onClick={() => setActiveTab(round)}
-          >
-            {round}
-          </button>
-        ))}
+      <div className="flex justify-center mb-2 ml-2 mr-2">
+        <div className="flex" style={{ overflowX: "auto" }}>
+          {rounds.map((round) => (
+            <button
+              key={round}
+              className={`mr-2 mb-2 py-2 rounded-lg text-xs px-2 min-w-fit  ${
+                activeTab === round
+                  ? "bg-gray-600 text-white"
+                  : "bg-gray-200 text-gray-500"
+              } sm:mr-4 sm:mb-0 sm:px-4 sm:py-2 sm:text-base`}
+              onClick={() => setActiveTab(round)}
+            >
+              {round}
+            </button>
+          ))}
+        </div>
       </div>
     );
   };

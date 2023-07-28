@@ -49,3 +49,10 @@
   font-size: 8px;
   font-weight: thin;
 }
+
+@media screen and (min-width: 900px) {
+  .text-sportselector {
+    font-size: 14px;
+    font-weight: thin;
+  }
+}
