@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
+import Image from "next/image";
 
 export default function DetailsActuality({
   params,
@@ -71,15 +72,20 @@ export default function DetailsActuality({
         .replace(/Plus d'infos ici\./g, "")
         .replace(/https:\/\/\S*/g, "")
     );
-
-    // Continuez à remplacer d'autres balises...
   };
 
   return (
     <div className="max-w-4xl mx-auto p-4">
       {data ? (
         <>
-          <h1 className="text-4xl font-bold mb-4">{data.TITLE}</h1>
+          <div
+            className="relative bg-cover bg-top h-64 rounded-t-lg"
+            style={{ backgroundImage: `url(${data.IMAGES[0].URL})` }} // Met l'image en fond
+          >
+            <h1 className="text-3xl font-bold absolute z-10 text-white bottom-0 bg-black bg-opacity-30 w-full p-2">
+              {data.TITLE}
+            </h1>
+          </div>
           <div className="border-b-2 border-gray-200 mb-4"></div>
           <p className="prose text-justify">{parse(data.CONTENT)}</p>
           <i>Crédit : {data.CREDIT}</i>
