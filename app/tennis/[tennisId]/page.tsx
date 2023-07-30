@@ -195,7 +195,7 @@ export default function ResultTennisTournament({
       {tournamentResult && tournamentResult.length > 0 ? (
         <div>
           {renderTabs()}
-          <div className="bg-gray-100 p-4">
+          <div className="bg-gray-100 p-4 lg:mx-60">
             <div className="space-y-2 rounded-lg">
               {filteredResults.map((result) => (
                 <div key={result.EVENT_ID} className="p-4 rounded-lg bg-white">

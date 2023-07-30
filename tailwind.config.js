@@ -17,7 +17,7 @@ module.exports = {
         sm: "640px",
         md: "900px", // breakpoint personnalisé à 900px
         lg: "1024px",
-        xl: "1280px",
+        xl: "1350px",
       },
       animation: {
         "background-shine": "background-shine 2s linear infinite",
