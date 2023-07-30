@@ -47,38 +47,42 @@ export default function DetailsActuality({
         .replace(/\[b\]/g, "<b>")
         .replace(/\[\/b\]/g, "</b>")
         .replace(/\[p\]/g, "<p>")
-        .replace(/\[\/p\]/g, "</p>")
+        .replace(/\[\/p\]/g, "</p><br>")
         .replace(/\[h1\]/g, "<h1>")
         .replace(/\[\/h1\]/g, "</h1>")
         .replace(/\[h2\]/g, "<h2>")
         .replace(/\[\/h2\]/g, "</h2>")
         .replace(/\[i\]/g, "<i>")
         .replace(/\[\/i\]/g, "</i>")
+        .replace(/\[br\]/g, "<br>")
         .replace(
           /\[embed guid=\"(.*?)\" url=\"(.*?)\" social-type=\"(.*?)\" \/]/g,
           ""
         )
         .replace(
           /\[lslink-news-article cms-href=\"(.*?)\" slug=\"(.*?)\" article-id=\"(.*?)\"\]/g,
-          '</br><a href="$1">'
+          ""
         )
-        .replace(/\[\/lslink-news-article\]/g, "</a>")
-        .replace(/\[a href=\"(.*?)\"\]/g, '<a href="$1">')
-        .replace(/\[\/a\]/g, "</a></br/>")
+        .replace(/\[\/lslink-news-article\]/g, "")
+        .replace(/\[a href=\"(.*?)\"\]/g, "")
+        .replace(/\[\/a\]/g, "</a>")
         .replace(/\[lslink[^]*?\](.*?)\[\/lslink[^]*?\]/g, "$1")
         .replace(/\[image[^]*?\/]/g, "")
+        .replace(/Plus d'infos ici\./g, "")
+        .replace(/https:\/\/\S*/g, "")
     );
 
     // Continuez à remplacer d'autres balises...
   };
 
   return (
-    <div>
+    <div className="max-w-4xl mx-auto p-4">
       {data ? (
         <>
-          <p>{data.TITLE}</p>
-          <br />
-          {parse(data.CONTENT)}
+          <h1 className="text-4xl font-bold mb-4">{data.TITLE}</h1>
+          <div className="border-b-2 border-gray-200 mb-4"></div>
+          <p className="prose text-justify">{parse(data.CONTENT)}</p>
+          <i>Crédit : {data.CREDIT}</i>
         </>
       ) : (
         <p>Chargement...</p>
