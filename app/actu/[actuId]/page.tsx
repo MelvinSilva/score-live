@@ -27,9 +27,10 @@ export default function DetailsActuality({
 
         const response = await axios.request(options);
         const fetchedData = response.data.DATA;
+
         setData(fetchedData);
       } catch (error) {
-        console.error("Erreur lors de la récupération des équipes", error);
+        console.error("Erreur lors de la récupération des actualités", error);
       }
     };
 
@@ -39,9 +40,13 @@ export default function DetailsActuality({
   return (
     <div>
       {data ? (
-        <p>{data.CONTENT}</p>
+        <>
+          <p>{data.TITLE}</p>
+          <br />
+          {data.CONTENT}
+        </>
       ) : (
-        <p>Loading...</p> // Show a loading message while fetching data
+        <p>Chargement...</p>
       )}
     </div>
   );

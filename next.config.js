@@ -7,6 +7,7 @@ const nextConfig = {
       "st4.depositphotos.com",
       "resizer.enetpulse.com",
     ],
+    unoptimized: true,
   },
 };
 
