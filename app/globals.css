@@ -48,7 +48,8 @@
 
 @media screen and (min-width: 640px) {
   .text-sportselector {
-    font-size: 14px;
+    font-size: 10px;
     font-weight: thin;
+    letter-spacing: 1px;
   }
 }

@@ -175,7 +175,7 @@ const FootballList = () => {
       </p>
       <br />
       {renderTabs()}
-      <div className="max-w-screen-md mx-auto">
+      <div className="max-w-screen-lg mx-auto">
         <table className="w-full mx-auto divide-y divide-gray-200 overflow-hidden shadow-lg">
           <tbody className="bg-white divide-y divide-gray-200">
             {renderCountryChampionships()}
