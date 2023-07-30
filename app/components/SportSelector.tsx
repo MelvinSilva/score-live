@@ -67,7 +67,7 @@ export default function SportSelector() {
 
   return (
     <div>
-      <div className="flex flex-col items-center py-0 shadow-md sport-selector fixed bottom-0 left-0 right-0">
+      <div className="flex flex-col items-center py-0 shadow-md bg-gray-100 fixed bottom-0 left-0 right-0">
         <div className="flex">
           {sports.map((sport, index) =>
             sport.available ? (

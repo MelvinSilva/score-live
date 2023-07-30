@@ -11,13 +11,13 @@ const ButeursTable: React.FC<Props> = ({ meilleursButeurs }) => {
   return (
     <div className="w-full mx-auto bg-gray-100">
       <br />
-      <div className="max-w-screen-md mx-auto">
+      <div className="max-w-screen-md lg:mx-auto xl:mx-auto md:mx-auto xs:mx-2 sm:mx-2">
         {meilleursButeurs.length === 0 ? (
           <div className="text-center text-gray-600">
             Désolé, nous n&apos;avons pas d&apos;informations disponibles.
           </div>
         ) : (
-          <table className="w-full mx-auto divide-y divide-gray-200 overflow-hidden shadow-lg">
+          <table className="w-full mx-auto divide-y divide-gray-200 overflow-hidden shadow-lg rounded-lg">
             <thead className="bg-white">
               <tr>
                 <th className="px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-500 uppercase">

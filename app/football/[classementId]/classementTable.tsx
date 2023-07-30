@@ -9,9 +9,9 @@ interface Props {
 
 const ClassementTable: React.FC<Props> = ({ teams }) => {
   return (
-    <div className="max-w-screen-md mx-auto">
+    <div className="max-w-screen-md lg:mx-auto xl:mx-auto md:mx-auto xs:mx-2 sm:mx-2">
       <br />
-      <table className="w-full mx-auto divide-y divide-gray-200 overflow-hidden shadow-lg">
+      <table className="w-full mx-auto divide-y divide-gray-200 overflow-hidden shadow-lg rounded-lg">
         <thead className="bg-white">
           <tr>
             <th className="text-left px-2 sm:px-6 py-2 sm:py-4 text-xs sm:text-sm font-semibold text-gray-500 uppercase">
