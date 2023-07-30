@@ -82,7 +82,7 @@ export default function DetailsActuality({
             className="relative bg-cover bg-top h-64 rounded-t-lg"
             style={{ backgroundImage: `url(${data.IMAGES[0].URL})` }} // Met l'image en fond
           >
-            <h1 className="text-3xl font-bold absolute z-10 text-white bottom-0 bg-black bg-opacity-30 w-full p-2">
+            <h1 className="text-3xl font-bold absolute z-10 text-white bottom-0 bg-black bg-opacity-40 w-full p-2 xs:text-xl">
               {data.TITLE}
             </h1>
           </div>
