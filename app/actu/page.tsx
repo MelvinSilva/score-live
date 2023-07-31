@@ -3,9 +3,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-export default function ActualityList() {
+export default function ActualityList({ limit }: { limit?: number }) {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<any[]>([]); // Utilisez un tableau vide pour stocker les actualités
+
+  const displayedData = limit ? data.slice(0, limit) : data;
 
   useEffect(() => {
     const fetchActuList = async () => {
@@ -55,7 +57,7 @@ export default function ActualityList() {
         LES DERNIERES ACTUALITÉS
       </p>
       <div className="max-w-5xl mx-auto">
-        {data.map((actu) => (
+        {displayedData.map((actu) => (
           <a key={actu.ID} href={`actu/${actu.ID}`}>
             <div
               key={actu.ID}
