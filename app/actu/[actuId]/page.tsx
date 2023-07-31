@@ -75,11 +75,11 @@ export default function DetailsActuality({
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="max-w-5xl mx-auto p-4">
       {data ? (
         <>
           <div
-            className="relative bg-cover bg-top h-64 rounded-t-lg"
+            className="relative bg-cover xs:bg-center sm:bg-top h-64 rounded-t-lg lg:bg-top"
             style={{ backgroundImage: `url(${data.IMAGES[0].URL})` }} // Met l'image en fond
           >
             <h1 className="text-3xl font-bold absolute z-10 text-white bottom-0 bg-black bg-opacity-40 w-full p-2 xs:text-xl">

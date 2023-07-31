@@ -54,30 +54,32 @@ export default function ActualityList() {
       <p className="w-full mx-auto bg-gray-200 font-semibold text-sm py-1 px-4 text-sm hover:bg-gray-400 center text-center">
         LES DERNIERES ACTUALITÉS
       </p>
-      {data.map((actu) => (
-        <a key={actu.ID} href={`actu/${actu.ID}`}>
-          <div
-            key={actu.ID}
-            className="flex flex-col mx-auto items-center bg-white border mt-3 p-2 border-gray-200 rounded-lg shadow xs:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ml-2 mr-2"
-          >
-            <Image
-              className="object-cover w-4 rounded-t-lg h-6 xs:h-32 xs:w-40 xs:rounded-lg"
-              src={actu.ARTICLE.IMAGES[1].URL}
-              width={100}
-              height={100}
-              alt={actu.ARTICLE.IMAGES[1].ALT_TEXT}
-            />
-            <div className="flex flex-col justify-between p-2 leading-normal">
-              <h3
-                className="text-l font-bold tracking-tight text-gray-900 dark:text-white"
-                key={actu.ID}
-              >
-                {actu.ARTICLE.TITLE}
-              </h3>
+      <div className="max-w-5xl mx-auto">
+        {data.map((actu) => (
+          <a key={actu.ID} href={`actu/${actu.ID}`}>
+            <div
+              key={actu.ID}
+              className="flex flex-col mx-auto items-center bg-white border mt-3 p-2 border-gray-200 rounded-lg shadow xs:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 ml-2 mr-2"
+            >
+              <Image
+                className="object-cover w-4 rounded-t-lg h-6 xs:h-32 xs:w-40 xs:rounded-lg"
+                src={actu.ARTICLE.IMAGES[1].URL}
+                width={100}
+                height={100}
+                alt={actu.ARTICLE.IMAGES[1].ALT_TEXT}
+              />
+              <div className="flex flex-col justify-between p-2 leading-normal">
+                <h3
+                  className="text-l font-bold tracking-tight text-gray-900 dark:text-white"
+                  key={actu.ID}
+                >
+                  {actu.ARTICLE.TITLE}
+                </h3>
+              </div>
             </div>
-          </div>
-        </a>
-      ))}
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
