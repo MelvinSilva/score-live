@@ -53,7 +53,7 @@ export default function ActualityList({ limit }: { limit?: number }) {
 
   return (
     <div>
-      <p className="w-full mx-auto bg-gray-200 font-semibold text-sm py-1 px-4 text-sm hover:bg-gray-400 center text-center">
+      <p className="w-full mx-auto bg-gray-200 font-semibold text-sm py-1 px-4 text-sm center text-center">
         LES DERNIERES ACTUALITÉS
       </p>
       <div className="max-w-5xl mx-auto">
