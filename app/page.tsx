@@ -1,11 +1,14 @@
 import ActualityList from "./actu/page";
 import { Fragment } from "react";
+import ClassementTournament from "./football/[classementId]/page"; // assurez-vous que le chemin est correct
 
 export default function Home() {
+  const classementId = "0W4LIGb1"; // Remplacer "LIGUE_1_ID" par l'ID réel du championnat de la Ligue 1
+
   return (
     <div className="p-4">
       <header className="w-full mx-auto mb-12">
-        <h1 className="text-3xl font-bold text-center">
+        <h1 className="text-xl font-bold text-center">
           Bienvenue sur SPORTY SCORE
         </h1>
         <p className="text-lg text-center">
@@ -19,12 +22,8 @@ export default function Home() {
 
         <aside className="flex flex-col gap-6">
           <section className="p-4 border-2 border-gray-200 rounded-md shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">A propos de nous</h2>
-            <p>
-              Nous sommes une plateforme dédiée aux actualités sportives. Notre
-              mission est de vous fournir les dernières nouvelles et mises à
-              jour du monde du sport.
-            </p>
+            <h2 className="text-2xl font-bold mb-4 text-center">Ligue 1</h2>
+            <ClassementTournament params={{ classementId }} />
           </section>
 
           <section className="p-4 border-2 border-gray-200 rounded-md shadow-lg">
