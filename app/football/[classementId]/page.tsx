@@ -183,12 +183,6 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
 
   return (
     <div className="w-full mx-auto bg-gray-100">
-      <Link href="/football">
-        <button className="w-full mx-auto bg-gray-200 font-semibold py-1 px-4 text-sm hover:bg-gray-400 center">
-          Retour
-        </button>
-      </Link>
-
       <br />
       <br />
       <div className="flex justify-center items-center">
