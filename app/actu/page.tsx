@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import SkeletonListActu from "../components/SkeletonListActu";
 
-export default function ActualityList({ limit }: { limit: number }) {
+export default function ActualityList({ limit }: { limit?: number }) {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<any[]>([]); // Utilisez un tableau vide pour stocker les actualités
 
