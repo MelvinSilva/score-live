@@ -1,13 +1,39 @@
+"use client";
+import React, { useState, useEffect } from "react";
 import ActualityList from "./actu/page";
-import { Fragment } from "react";
-import ClassementTournament from "./football/[classementId]/page"; // assurez-vous que le chemin est correct
+import ClassementTournament from "./football/[classementId]/page";
 
 export default function Home() {
-  const classementId = "0W4LIGb1"; // Remplacer "LIGUE_1_ID" par l'ID réel du championnat de la Ligue 1
+  const classementId = "0W4LIGb1";
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let progressInterval = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress === 100) {
+          clearInterval(progressInterval);
+          setLoading(false);
+        }
+        return Math.min(oldProgress + 1, 100);
+      });
+    }, 20);
+
+    return () => clearInterval(progressInterval);
+  }, []);
 
   return (
     <div className="max-w-5xl mx-auto">
       <br />
+      {loading && (
+        <div className="loader-container">
+          <div
+            className="loader-progress"
+            style={{ width: `${progress}%` }}
+          ></div>
+          <span className="loader-text">{progress}%</span>
+        </div>
+      )}
       <header className="w-full mx-auto mb-12">
         <h1 className="text-xl font-bold text-center">
           Bienvenue sur SPORTY SCORE
@@ -18,7 +44,6 @@ export default function Home() {
       </header>
 
       <main className="flex flex-col lg:flex-row gap-4 no-marge">
-        {/* Ici on inclut le composant ActualityList pour afficher les 5 dernières actualités */}
         <ActualityList limit={5} />
 
         <aside className="flex flex-col gap-4 max-w-2xl">

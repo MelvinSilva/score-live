@@ -57,3 +57,29 @@
 .no-marge {
   margin-top: -30px;
 }
+
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 1); /* Ajoute un fond blanc opaque */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999; /* Assurez-vous que le loader est bien au-dessus de tout */
+}
+
+.loader-progress {
+  height: 20px;
+  border-radius: 5px;
+  background: #1f2937;
+  transition: width 0.3s ease-in-out;
+}
+
+.loader-text {
+  font-size: 2rem;
+  margin-top: 20px;
+}
