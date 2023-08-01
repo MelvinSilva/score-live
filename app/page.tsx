@@ -1,6 +1,5 @@
 import ActualityList from "./actu/page";
-import { Fragment } from "react";
-import ClassementTournament from "./football/[classementId]/page"; // assurez-vous que le chemin est correct
+import TwitterFeed from "./components/TwitterFeed";
 
 export default function Home() {
   const classementId = "0W4LIGb1"; // Remplacer "LIGUE_1_ID" par l'ID réel du championnat de la Ligue 1
@@ -23,10 +22,10 @@ export default function Home() {
 
         <aside className="flex flex-col gap-4 max-w-2xl">
           <p className="w-full mx-auto bg-gray-200 font-semibold text-sm py-1 px-4 text-sm center text-center">
-            LIGUE 1
+            Fil Twitter
           </p>
           <section className="p-4 border-2 border-gray-200 rounded-md shadow-lg">
-            <ClassementTournament params={{ classementId }} />
+            <TwitterFeed />
           </section>
 
           <section className="p-4 border-2 border-gray-200 rounded-md shadow-lg">
