@@ -4,8 +4,8 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { SeasonTennis, TournamentTennis } from "@/app/types";
-import LoadingSpinner from "@/app/football/[classementId]/loadingSpinner";
-import CardSkeleton from "@/app/football/[classementId]/cardSkeleton";
+import LoadingSpinner from "@/app/components/LoadingSpinner";
+import CardSkeleton from "@/app/components/CardSkeleton";
 
 export default function ResultTennisTournament({
   params,

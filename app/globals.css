@@ -54,6 +54,6 @@
   }
 }
 
-.z-index {
-  z-index: 2;
+.no-marge {
+  margin-top: -30px;
 }

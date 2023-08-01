@@ -2,7 +2,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import LoadingSpinner from "../football/[classementId]/loadingSpinner";
+import LoadingSpinner from "../components/LoadingSpinner";
+import CardSkeleton from "../components/CardSkeleton";
 
 export default function ActualityList({ limit }: { limit?: number }) {
   const [loading, setLoading] = useState<boolean>(true);
@@ -38,7 +39,7 @@ export default function ActualityList({ limit }: { limit?: number }) {
   }, []);
 
   if (loading) {
-    return <LoadingSpinner />;
+    return <CardSkeleton />;
   }
 
   return (

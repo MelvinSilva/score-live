@@ -17,7 +17,7 @@ export default function Home() {
         </p>
       </header>
 
-      <main className="flex flex-col lg:flex-row gap-4">
+      <main className="flex flex-col lg:flex-row gap-4 no-marge">
         {/* Ici on inclut le composant ActualityList pour afficher les 5 dernières actualités */}
         <ActualityList limit={5} />
 

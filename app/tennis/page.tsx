@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { excludedSuperCup } from "../football/components/filter/excludedSuperCup";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 type TennisChampionship = {
   name: string;
@@ -104,14 +105,7 @@ const TennisList = () => {
   if (loading) {
     return (
       <div>
-        <br />
-        <Image
-          src="/Spin-1.2s-200px.svg"
-          width={100}
-          height={100}
-          alt={"spinner"}
-          className="mx-auto block"
-        />
+        <LoadingSpinner />
       </div>
     );
   }
