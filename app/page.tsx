@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import ActualityList from "./actu/page";
 import ClassementTournament from "./football/[classementId]/page";
 
 export default function Home() {
@@ -44,8 +43,6 @@ export default function Home() {
       </header>
 
       <main className="flex flex-col lg:flex-row gap-4 no-marge">
-        <ActualityList limit={5} />
-
         <aside className="flex flex-col gap-4 max-w-2xl">
           <p className="w-full mx-auto bg-gray-200 font-semibold text-sm py-1 px-4 text-sm center text-center">
             LIGUE 1
