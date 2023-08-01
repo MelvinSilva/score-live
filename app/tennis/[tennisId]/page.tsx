@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SeasonTennis, TournamentTennis } from "@/app/types";
 import LoadingSpinner from "@/app/football/[classementId]/loadingSpinner";
+import CardSkeleton from "@/app/football/[classementId]/cardSkeleton";
 
 export default function ResultTennisTournament({
   params,
@@ -149,7 +150,7 @@ export default function ResultTennisTournament({
     : tournamentResult;
 
   if (loading) {
-    return <LoadingSpinner />;
+    return <CardSkeleton />;
   }
 
   return (

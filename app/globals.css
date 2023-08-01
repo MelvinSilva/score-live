@@ -53,3 +53,7 @@
     letter-spacing: 1px;
   }
 }
+
+.z-index {
+  z-index: 2;
+}

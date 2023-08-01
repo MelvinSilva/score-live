@@ -4,6 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import { allowedCountries } from "./components/filter/allowedCountries";
 import { excludedSuperCup } from "./components/filter/excludedSuperCup";
+import LoadingSpinner from "./[classementId]/loadingSpinner";
 
 type FootballChampionship = {
   name: string;
@@ -77,18 +78,7 @@ const FootballList = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div>
-        <br />
-        <Image
-          src="/Spin-1.2s-200px.svg"
-          width={100}
-          height={100}
-          alt={"spinner"}
-          className="mx-auto block"
-        />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   const handleTabClick = (tab: string) => {
