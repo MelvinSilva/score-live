@@ -4,6 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { SeasonTennis, TournamentTennis } from "@/app/types";
+import LoadingSpinner from "@/app/football/[classementId]/loadingSpinner";
 
 export default function ResultTennisTournament({
   params,
@@ -148,18 +149,7 @@ export default function ResultTennisTournament({
     : tournamentResult;
 
   if (loading) {
-    return (
-      <div>
-        <br />
-        <Image
-          src="/Spin-1.2s-200px.svg"
-          width={100}
-          height={100}
-          alt="spinner"
-          className="mx-auto block"
-        />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (

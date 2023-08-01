@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import LoadingSpinner from "../football/[classementId]/loadingSpinner";
 
 export default function ActualityList({ limit }: { limit?: number }) {
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,18 +38,7 @@ export default function ActualityList({ limit }: { limit?: number }) {
   }, []);
 
   if (loading) {
-    return (
-      <div>
-        <br />
-        <Image
-          src="/Spin-1.2s-200px.svg"
-          width={100}
-          height={100}
-          alt={"spinner"}
-          className="mx-auto block"
-        />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (
