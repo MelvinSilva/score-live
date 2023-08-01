@@ -9,7 +9,7 @@ import TabButtons from "./ongletButtons";
 import { ResultatsTable } from "./resultatTable";
 import ChampionnatInfo from "./championnatInfo";
 import SaisonSelect from "./saisonSelect";
-import LoadingSpinner from "../../components/LoadingSpinner";
+import LoadingSpinner from "../../components/SkeletonListSport";
 
 interface Props {
   params: { classementId: string };

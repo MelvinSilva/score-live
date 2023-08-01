@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { excludedSuperCup } from "../football/components/filter/excludedSuperCup";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../components/SkeletonListSport";
 
 type TennisChampionship = {
   name: string;

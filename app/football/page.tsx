@@ -4,7 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import { allowedCountries } from "./components/filter/allowedCountries";
 import { excludedSuperCup } from "./components/filter/excludedSuperCup";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../components/SkeletonListSport";
 
 type FootballChampionship = {
   name: string;
