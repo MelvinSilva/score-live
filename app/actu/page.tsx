@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import SkeletonListActu from "../components/SkeletonListActu";
+import SkeletonListActu from "./SkeletonListActu";
 
 export default function ActualityList({ limit }: { limit?: number }) {
   const [loading, setLoading] = useState<boolean>(true);
