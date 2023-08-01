@@ -2,7 +2,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import CardSkeleton from "../components/SkeletonCardTennis";
 import SkeletonListActu from "../components/SkeletonListActu";
 
 export default function ActualityList({ limit }: { limit?: number }) {
