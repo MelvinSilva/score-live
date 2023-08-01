@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import SkeletonListActu from "./SkeletonListActu";
+import CardSkeleton from "../components/SkeletonCardTennis";
 
 export default function ActualityList({ limit }: { limit?: number }) {
   const [loading, setLoading] = useState<boolean>(true);
@@ -38,7 +38,7 @@ export default function ActualityList({ limit }: { limit?: number }) {
   }, []);
 
   if (loading) {
-    return <SkeletonListActu />;
+    return <CardSkeleton />;
   }
 
   return (
