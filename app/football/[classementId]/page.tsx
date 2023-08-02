@@ -2,7 +2,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import { Buteur, SeasonFoot, TeamFoot, TournamentFoot } from "@/app/types";
+import {
+  Buteur,
+  MatchResult,
+  SeasonFoot,
+  TeamFoot,
+  TournamentFoot,
+} from "@/app/types";
 import ClassementTable from "./classementTable";
 import ButeursTable from "./buteurTable";
 import TabButtons from "./ongletButtons";
@@ -26,6 +32,7 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
     "classement" | "buteurs" | "résultats"
   >("classement");
   const [meilleursButeurs, setMeilleursButeurs] = useState<Buteur[]>([]);
+  const [resultats, setResultats] = useState<MatchResult[]>([]);
 
   //////////////// FETCH SAISONS /////////////////////////////// FETCH SAISONS ///////////////
   //////////////// FETCH SAISONS /////////////////////////////// FETCH SAISONS ///////////////
@@ -64,6 +71,59 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
 
     fetchSeasons();
   }, [params.classementId]);
+
+  const fetchResultats = async (page: number = 1) => {
+    if (selectedOption !== "résultats") {
+      setResultats([]); // Réinitialiser le tableau des résultats
+      return;
+    }
+
+    if (!seasonId || !stageId) {
+      setResultats([]); // Réinitialiser le tableau des résultats
+      return;
+    }
+
+    try {
+      const options = {
+        method: "GET",
+        url: "https://flashlive-sports.p.rapidapi.com/v1/tournaments/results",
+        params: {
+          locale: "fr_FR",
+          tournament_stage_id: stageId,
+          page: page.toString(),
+        },
+        headers: {
+          "X-RapidAPI-Key": process.env.NEXT_PUBLIC_KEY,
+          "X-RapidAPI-Host": "flashlive-sports.p.rapidapi.com",
+        },
+      };
+
+      const response = await axios.request(options);
+      const result: { DATA: any[] } = response.data;
+
+      if (result.DATA.length === 0) {
+        // Si la DATA est vide, on peut supposer qu'il n'y a plus de pages à récupérer
+        return;
+      } else {
+        setResultats((prevResults) => [
+          ...prevResults,
+          ...result.DATA[0].EVENTS,
+        ]);
+        fetchResultats(page + 1); // Appel récursif avec la page suivante
+      }
+    } catch (error) {
+      console.error("Erreur lors de la récupération des résultats", error);
+    } finally {
+      // Fin du chargement
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (seasonId && stageId) {
+      fetchResultats();
+    }
+  }, [seasonId, stageId, selectedOption]);
 
   //////////////// FETCH EQUIPE CLASSEMENT /////////////////////////////// FETCH EQUIPE CLASSEMENT ///////////////
   //////////////// FETCH EQUIPE CLASSEMENT /////////////////////////////// FETCH EQUIPE CLASSEMENT ///////////////
@@ -205,7 +265,9 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
       {selectedOption === "buteurs" && (
         <ButeursTable meilleursButeurs={meilleursButeurs} />
       )}
-      {selectedOption === "résultats" && <ResultatsTable />}
+      {selectedOption === "résultats" && (
+        <ResultatsTable matchResults={resultats} />
+      )}
     </div>
   );
 };
