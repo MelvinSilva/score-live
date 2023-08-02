@@ -36,6 +36,7 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
 
   //////////////// FETCH SAISONS /////////////////////////////// FETCH SAISONS ///////////////
   //////////////// FETCH SAISONS /////////////////////////////// FETCH SAISONS ///////////////
+
   useEffect(() => {
     const fetchSeasons = async () => {
       try {
@@ -72,17 +73,18 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
     fetchSeasons();
   }, [params.classementId]);
 
-  const fetchResultats = async (page: number = 1) => {
+  //////////////// FETCH RESULTATS /////////////////////////////// FETCH RESULTATS ///////////////
+  //////////////// FETCH RESULTATS /////////////////////////////// FETCH RESULTATS ///////////////
+
+  const fetchResultats = async (
+    seasonId: string,
+    stageId: string,
+    page: number = 1
+  ) => {
     if (selectedOption !== "résultats") {
       setResultats([]); // Réinitialiser le tableau des résultats
       return;
     }
-
-    if (!seasonId || !stageId) {
-      setResultats([]); // Réinitialiser le tableau des résultats
-      return;
-    }
-
     try {
       const options = {
         method: "GET",
@@ -99,6 +101,13 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
       };
 
       const response = await axios.request(options);
+
+      // Si le taux limite est dépassé, réessayer après une seconde
+      if (response.status === 429) {
+        setTimeout(() => fetchResultats(seasonId, stageId, page + 1), 1000);
+        return;
+      }
+
       const result: { DATA: any[] } = response.data;
 
       if (result.DATA.length === 0) {
@@ -109,7 +118,7 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
           ...prevResults,
           ...result.DATA[0].EVENTS,
         ]);
-        fetchResultats(page + 1); // Appel récursif avec la page suivante
+        fetchResultats(seasonId, stageId, page + 1); // Appel récursif avec la page suivante
       }
     } catch (error) {
       console.error("Erreur lors de la récupération des résultats", error);
@@ -120,10 +129,10 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
   };
 
   useEffect(() => {
-    if (seasonId && stageId) {
-      fetchResultats();
+    if (selectedOption === "résultats" && seasonId && stageId) {
+      fetchResultats(seasonId, stageId);
     }
-  }, [seasonId, stageId, selectedOption]);
+  }, [selectedOption, seasonId, stageId]);
 
   //////////////// FETCH EQUIPE CLASSEMENT /////////////////////////////// FETCH EQUIPE CLASSEMENT ///////////////
   //////////////// FETCH EQUIPE CLASSEMENT /////////////////////////////// FETCH EQUIPE CLASSEMENT ///////////////
@@ -168,58 +177,60 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
 
   //////////////// FETCH BUTEUR /////////////////////////////// FETCH BUTEUR ///////////////
   //////////////// FETCH BUTEUR /////////////////////////////// FETCH BUTEUR ///////////////
+  const fetchButeurs = async (seasonId: string, stageId: string) => {
+    if (selectedOption !== "buteurs") {
+      setMeilleursButeurs([]); // Réinitialiser le tableau des meilleurs buteurs
+      return;
+    }
+
+    if (!seasonId || !stageId) {
+      setMeilleursButeurs([]); // Réinitialiser le tableau des meilleurs buteurs
+      return;
+    }
+
+    try {
+      const options = {
+        method: "GET",
+        url: "https://flashlive-sports.p.rapidapi.com/v1/tournaments/standings",
+        params: {
+          standing_type: "top_scores",
+          locale: "fr_FR",
+          tournament_stage_id: stageId,
+          tournament_season_id: seasonId,
+          limit: 50,
+        },
+        headers: {
+          "X-RapidAPI-Key": process.env.NEXT_PUBLIC_KEY,
+          "X-RapidAPI-Host": "flashlive-sports.p.rapidapi.com",
+        },
+      };
+
+      const response = await axios.request(options);
+      const result: { ROWS: Buteur[] } = response.data;
+      if (result.ROWS.length === 0) {
+        setMeilleursButeurs([]); // Réinitialiser le tableau des meilleurs buteurs
+      } else {
+        const filteredButeurs = result.ROWS.slice(0, 50); // Récupère les 50 premiers buteurs
+        setMeilleursButeurs(filteredButeurs);
+      }
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des meilleurs buteurs",
+        error
+      );
+    } finally {
+      // Fin du chargement
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchButeurs = async () => {
-      if (selectedOption !== "buteurs") {
-        setMeilleursButeurs([]); // Réinitialiser le tableau des meilleurs buteurs
-        return;
-      }
-
-      if (!seasonId || !stageId) {
-        setMeilleursButeurs([]); // Réinitialiser le tableau des meilleurs buteurs
-        return;
-      }
-
-      try {
-        const options = {
-          method: "GET",
-          url: "https://flashlive-sports.p.rapidapi.com/v1/tournaments/standings",
-          params: {
-            standing_type: "top_scores",
-            locale: "fr_FR",
-            tournament_stage_id: stageId,
-            tournament_season_id: seasonId,
-            limit: 50,
-          },
-          headers: {
-            "X-RapidAPI-Key": process.env.NEXT_PUBLIC_KEY,
-            "X-RapidAPI-Host": "flashlive-sports.p.rapidapi.com",
-          },
-        };
-
-        const response = await axios.request(options);
-        const result: { ROWS: Buteur[] } = response.data;
-        if (result.ROWS.length === 0) {
-          setMeilleursButeurs([]); // Réinitialiser le tableau des meilleurs buteurs
-        } else {
-          const filteredButeurs = result.ROWS.slice(0, 50); // Récupère les 50 premiers buteurs
-          setMeilleursButeurs(filteredButeurs);
-        }
-      } catch (error) {
-        console.error(
-          "Erreur lors de la récupération des meilleurs buteurs",
-          error
-        );
-      } finally {
-        // Fin du chargement
-        setLoading(false);
-      }
-    };
-
     if (seasonId && stageId) {
-      fetchButeurs();
+      fetchButeurs(seasonId, stageId);
     }
   }, [seasonId, stageId, selectedOption]);
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const handleOptionChange = (
     option: "classement" | "buteurs" | "résultats"
@@ -234,6 +245,17 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
     if (selectedSeason) {
       setSeasonId(selectedSeason.SEASON_ID);
       setStageId(selectedSeason.SEASON_TOURNAMENT_STAGE_ID);
+      // Réinitialisez l'état des résultats et des meilleurs buteurs avant de faire le nouvel appel API
+      setResultats([]);
+      setMeilleursButeurs([]);
+      fetchResultats(
+        selectedSeason.SEASON_ID,
+        selectedSeason.SEASON_TOURNAMENT_STAGE_ID
+      );
+      fetchButeurs(
+        selectedSeason.SEASON_ID,
+        selectedSeason.SEASON_TOURNAMENT_STAGE_ID
+      );
     }
   };
 
@@ -266,7 +288,7 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
         <ButeursTable meilleursButeurs={meilleursButeurs} />
       )}
       {selectedOption === "résultats" && (
-        <ResultatsTable matchResults={resultats} />
+        <ResultatsTable matchResults={resultats} loading={false} />
       )}
     </div>
   );

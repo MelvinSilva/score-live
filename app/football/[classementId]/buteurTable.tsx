@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Buteur } from "@/app/types";
 
@@ -8,14 +8,29 @@ interface Props {
 }
 
 const ButeursTable: React.FC<Props> = ({ meilleursButeurs }) => {
+  const [showMessage, setShowMessage] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (meilleursButeurs.length === 0) {
+        setShowMessage(true);
+      }
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }, [meilleursButeurs]);
+
   return (
     <div className="w-full mx-auto bg-gray-100">
       <br />
       <div className="max-w-screen-md mx-auto">
         {meilleursButeurs.length === 0 ? (
-          <div className="text-center text-gray-600">
-            Désolé, nous n&apos;avons pas d&apos;informations disponibles.
-          </div>
+          showMessage ? (
+            <div className="text-center text-gray-600">
+              Désolé, nous n&apos;avons pas encore d&apos;informations
+              disponibles.
+            </div>
+          ) : null
         ) : (
           <table className="w-full mx-auto divide-y divide-gray-200 overflow-hidden shadow-lg">
             <thead className="bg-white">
