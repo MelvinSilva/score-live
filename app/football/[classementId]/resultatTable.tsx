@@ -96,7 +96,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
           {selectedTeam && (
             <button
               onClick={handleResetClick}
-              className="my-2 block bg-gray-800 text-gray-200 text-xs p-2 rounded-lg"
+              className="my-2 block bg-gray-200 text-gray-800 text-xs p-2 rounded-lg mx-auto"
             >
               Afficher toutes les équipes
             </button>
