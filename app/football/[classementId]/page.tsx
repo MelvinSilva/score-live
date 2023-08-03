@@ -33,6 +33,8 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
   >("classement");
   const [meilleursButeurs, setMeilleursButeurs] = useState<Buteur[]>([]);
   const [resultats, setResultats] = useState<MatchResult[]>([]);
+  const [isLoadingSeasonData, setIsLoadingSeasonData] =
+    useState<boolean>(false);
 
   //////////////// FETCH SAISONS /////////////////////////////// FETCH SAISONS ///////////////
   //////////////// FETCH SAISONS /////////////////////////////// FETCH SAISONS ///////////////
@@ -114,10 +116,18 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
         // Si la DATA est vide, on peut supposer qu'il n'y a plus de pages à récupérer
         return;
       } else {
-        setResultats((prevResults) => [
-          ...prevResults,
-          ...result.DATA[0].EVENTS,
-        ]);
+        setResultats((prevResults) => {
+          // Créer un ensemble d'ID uniques à partir des résultats existants
+          const existingIds = new Set(
+            prevResults.map((result) => result.EVENT_ID)
+          );
+          // Filtrer les nouvelles données pour ne conserver que celles dont l'ID n'est pas déjà présent
+          const newUniqueResults = result.DATA[0].EVENTS.filter(
+            (event: { EVENT_ID: any }) => !existingIds.has(event.EVENT_ID)
+          );
+          // Ajouter ces nouvelles données uniques aux anciennes
+          return [...prevResults, ...newUniqueResults];
+        });
         fetchResultats(seasonId, stageId, page + 1); // Appel récursif avec la page suivante
       }
     } catch (error) {
@@ -239,6 +249,7 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
   };
 
   const handleSeasonChange = (seasonId: string) => {
+    setIsLoadingSeasonData(true); // Début du chargement des données de la saison
     const selectedSeason = seasons?.SEASONS.find(
       (season) => season.SEASON_ID === seasonId
     );
@@ -251,7 +262,7 @@ const ClassementTournament: React.FC<Props> = ({ params }) => {
       fetchResultats(
         selectedSeason.SEASON_ID,
         selectedSeason.SEASON_TOURNAMENT_STAGE_ID
-      );
+      ).then(() => setIsLoadingSeasonData(false)); // Fin du chargement des données de la saison
       fetchButeurs(
         selectedSeason.SEASON_ID,
         selectedSeason.SEASON_TOURNAMENT_STAGE_ID

@@ -2,10 +2,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Image from "next/image";
-import Link from "next/link";
 import { SeasonTennis, TournamentTennis } from "@/app/types";
-import LoadingSpinner from "@/app/components/SkeletonListSport";
-import CardSkeleton from "@/app/components/SkeletonCardTennis";
+import SkeletonCardTennis from "@/app/components/SkeletonCardTennis";
 
 export default function ResultTennisTournament({
   params,
@@ -150,7 +148,7 @@ export default function ResultTennisTournament({
     : tournamentResult;
 
   if (loading) {
-    return <CardSkeleton />;
+    return <SkeletonCardTennis />;
   }
 
   return (

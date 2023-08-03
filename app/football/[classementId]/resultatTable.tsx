@@ -31,7 +31,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
       if (matchResults.length === 0) {
         setShowMessage(true);
       }
-    }, 1500);
+    }, 2000);
     return () => clearTimeout(timeout);
   }, [matchResults]);
 

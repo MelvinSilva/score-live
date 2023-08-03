@@ -83,6 +83,7 @@ export interface Buteur {
 }
 
 export interface MatchResult {
+  EVENT_ID: any;
   STAGE_TYPE: string;
   HOME_NAME: string;
   AWAY_NAME: string;

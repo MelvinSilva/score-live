@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CardSkeleton() {
+export default function SkeletonCardTennis() {
   return (
     <div className="w-full mx-auto bg-gray-100 py-6 animate-pulse">
       <br />
