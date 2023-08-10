@@ -22,6 +22,21 @@ module.exports = {
       animation: {
         "background-shine": "background-shine 2s linear infinite",
       },
+      colors: {
+        denim: {
+          50: "#eefaff",
+          100: "#d9f4ff",
+          200: "#bbecff",
+          300: "#8ce2ff",
+          400: "#56cfff",
+          500: "#2fb4ff",
+          600: "#1897f8",
+          700: "#117ee4",
+          800: "#1564b8",
+          900: "#175691",
+          950: "#133558",
+        },
+      },
       keyframes: {
         "background-shine": {
           from: {

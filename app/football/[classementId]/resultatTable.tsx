@@ -142,7 +142,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                               className={`ml-2 text-sm ${
                                 match.HOME_SCORE_CURRENT >
                                 match.AWAY_SCORE_CURRENT
-                                  ? "font-semibold"
+                                  ? "font-extrabold"
                                   : ""
                               }`}
                             >
@@ -166,7 +166,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                                 minute: "numeric",
                               })}
                             </p>
-                            <div className="font-semibold text-xs text-center current-score-foot m-4">
+                            <div className="font-medium text-xs text-center current-score-foot m-4">
                               {match.HOME_SCORE_CURRENT} -{" "}
                               {match.AWAY_SCORE_CURRENT}
                             </div>
@@ -184,7 +184,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                               className={`mr-2 text-sm ${
                                 match.HOME_SCORE_CURRENT <
                                 match.AWAY_SCORE_CURRENT
-                                  ? "font-semibold"
+                                  ? "font-extrabold"
                                   : ""
                               }`}
                             >

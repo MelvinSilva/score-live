@@ -67,14 +67,14 @@ export default function SportSelector() {
 
   return (
     <div className="z-index">
-      <div className="flex flex-col items-center py-0 shadow-md bg-gray-100 fixed bottom-0 left-0 right-0 lg:relative lg:bg-gray-900">
+      <div className="flex flex-col items-center py-0 shadow-md bg-denim-50 fixed bottom-0 left-0 right-0 lg:relative lg:bg-gradient-to-r from-denim-600 to-denim-900">
         <div className="flex">
           {sports.map((sport, index) =>
             sport.available ? (
               <Link href={sport.path} key={sport.value}>
                 <div
-                  className={`flex flex-col items-center bg-gray-700 text-white px-4 py-1 rounded-md mx-1 my-2 w-16 sm:px-14 sm:py-1 lg:px-24 lg:py-1 ${
-                    sport.value === "Actualités" ? "text-gray-400" : ""
+                  className={`flex flex-col items-center bg-denim-600 lg:border lg:border-denim-200 lg:bg-transparent lg:hover:bg-denim-600 text-white px-4 py-1 rounded-md mx-1 my-2 w-16 sm:px-14 sm:py-1 lg:px-24 lg:py-1 ${
+                    sport.value === "Actualités" ? "text-white" : ""
                   }`}
                   onClick={() => setSelectedSport(sport.value)} // Mettez à jour le bouton sélectionné au clic
                 >
@@ -84,7 +84,7 @@ export default function SportSelector() {
               </Link>
             ) : (
               <div
-                className="flex-1 bg-gray-600 text-white px-5 py-1 rounded-md mx-1 my-2 cursor-not-allowed"
+                className="flex-1 bg-denim-200 text-white px-5 py-1 rounded-md mx-1 my-2 cursor-not-allowed"
                 key={sport.value}
                 onClick={() => handleClickUnavailableSport(sport)}
               >

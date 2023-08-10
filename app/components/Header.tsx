@@ -9,7 +9,7 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className="flex flex-col items-center justify-center w-full py-4 bg-gray-900 shadow-md relative">
+    <header className="flex flex-col items-center justify-center w-full py-4 bg-gradient-to-r from-denim-600 to-denim-900  shadow-md relative">
       <button
         onClick={() => router.back()}
         className="absolute left-4 top-7 text-white hover:text-white"
@@ -20,18 +20,18 @@ export default function Header() {
         href="/"
         className="flex items-center text-center text-white text-2xl font-bold"
       >
-        <span className="text-gray-200">S</span>
-        <span className="text-gray-400">P</span>
+        <span className="text-denim-200">S</span>
+        <span className="text-denim-400">P</span>
         <IoFootballOutline className="h-10 text-white" />
-        <span className="text-gray-400">R</span>
-        <span className="text-gray-200">T</span>
-        <span className="text-gray-400">Y</span>&nbsp;
-        <span className="text-gray-200">S</span>
-        <span className="text-gray-400">C</span>
+        <span className="text-denim-400">R</span>
+        <span className="text-denim-200">T</span>
+        <span className="text-denim-400">Y</span>&nbsp;
+        <span className="text-denim-200">S</span>
+        <span className="text-denim-400">C</span>
         <IoTennisballOutline className="h-10 text-white" />
-        <span className="text-gray-200">R</span>
-        <span className="text-gray-400">E</span>
-        <span className="text-gray-200">S</span>
+        <span className="text-denim-200">R</span>
+        <span className="text-denim-400">E</span>
+        <span className="text-denim-200">S</span>
       </a>
       <a
         href="/"
