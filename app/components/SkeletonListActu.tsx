@@ -23,14 +23,6 @@ export default function SkeletonListActu() {
             <div className="h-4 bg-gray-300 rounded w-1/4 animate-pulse"></div>
           </div>
         </div>
-        <div className="flex mx-auto items-center bg-white border mt-3 p-2 border-gray-200 rounded-lg shadow xs:flex-row ml-2 mr-2">
-          <div className="object-cover w-40 h-32 rounded-lg bg-gray-300"></div>
-          <div className="flex flex-col justify-between p-2 leading-normal w-full">
-            <div className="h-4 bg-gray-300 rounded w-3/4 mb-2 animate-pulse"></div>
-            <div className="h-4 bg-gray-300 rounded w-1/2 mb-2 animate-pulse"></div>
-            <div className="h-4 bg-gray-300 rounded w-1/4 animate-pulse"></div>
-          </div>
-        </div>
       </div>
       <div className="flex mx-auto items-center bg-white border mt-3 p-2 border-gray-200 rounded-lg shadow xs:flex-row ml-2 mr-2">
         <div className="object-cover w-40 h-32 rounded-lg bg-gray-300"></div>

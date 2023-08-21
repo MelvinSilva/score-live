@@ -73,7 +73,7 @@ export default function SportSelector() {
             sport.available ? (
               <Link href={sport.path} key={sport.value}>
                 <div
-                  className={`flex flex-col items-center bg-denim-600 lg:border lg:border-denim-200 lg:bg-transparent lg:hover:bg-denim-600 text-white px-4 py-1 rounded-md mx-1 my-2 w-16 sm:px-14 sm:py-1 lg:px-24 lg:py-1 ${
+                  className={`flex flex-col items-center bg-denim-600 lg:bg-denim-600 lg:hover:bg-denim-600 text-white px-4 py-1 rounded-md mx-1 my-2 w-16 sm:px-14 sm:py-1 lg:px-24 lg:py-1 ${
                     sport.value === "Actualités" ? "text-white" : ""
                   }`}
                   onClick={() => setSelectedSport(sport.value)} // Mettez à jour le bouton sélectionné au clic

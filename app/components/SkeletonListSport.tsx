@@ -47,18 +47,6 @@ const SkeletonListSport: React.FC = () => {
           <div className="h-8 w-8 bg-gray-300 mr-2"></div>
           <div className="h-4 w-full bg-gray-300"></div>
         </div>
-        <div className="h-12 bg-white flex items-center px-6">
-          <div className="h-8 w-8 bg-gray-300 mr-2"></div>
-          <div className="h-4 w-full bg-gray-300"></div>
-        </div>
-        <div className="h-12 bg-white flex items-center px-6">
-          <div className="h-8 w-8 bg-gray-300 mr-2"></div>
-          <div className="h-4 w-full bg-gray-300"></div>
-        </div>
-        <div className="h-12 bg-white flex items-center px-6">
-          <div className="h-8 w-8 bg-gray-300 mr-2"></div>
-          <div className="h-4 w-full bg-gray-300"></div>
-        </div>
       </div>
     </div>
   );

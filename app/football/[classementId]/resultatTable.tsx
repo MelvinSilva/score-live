@@ -126,20 +126,41 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                   <div className="space-y-2 rounded-lg">
                     {(groupedResults[round] || []).map((match, index) => (
                       <div key={index} className="p-2 rounded-lg bg-white">
-                        <div className="flex items-center justify-between">
+                        {/* Ligne de date et d'heure */}
+                        <p className="text-gray-400 text-xs font-light text-center mb-2">
+                          {new Date(match.START_TIME * 1000).toLocaleDateString(
+                            "fr-FR",
+                            {
+                              day: "numeric",
+                              month: "numeric",
+                              year: "numeric",
+                            }
+                          )}{" "}
+                          à{" "}
+                          {new Date(match.START_TIME * 1000).toLocaleTimeString(
+                            "fr-FR",
+                            {
+                              hour: "numeric",
+                              minute: "numeric",
+                            }
+                          )}
+                        </p>
+
+                        <div className="flex items-center justify-between mb-2">
+                          {/* Équipe à domicile */}
                           <div
-                            className="flex items-center w-1/4 cursor-pointer"
+                            className="flex items-center w-40 cursor-pointer"
                             onClick={() => handleTeamClick(match.HOME_NAME)}
                           >
                             <Image
                               src={match.HOME_IMAGES[0]}
-                              width={30}
-                              height={30}
+                              width={20}
+                              height={20}
                               alt="Home Player"
                               className="rounded-full"
                             />
                             <p
-                              className={`ml-2 text-sm ${
+                              className={`ml-2 text-xs ${
                                 match.HOME_SCORE_CURRENT >
                                 match.AWAY_SCORE_CURRENT
                                   ? "font-extrabold"
@@ -149,39 +170,22 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                               {match.HOME_NAME}
                             </p>
                           </div>
-                          <div className="flex flex-col items-center justify-center w-1/2">
-                            <p className="text-gray-400 text-xs font-light">
-                              {new Date(
-                                match.START_TIME * 1000
-                              ).toLocaleDateString("fr-FR", {
-                                day: "numeric",
-                                month: "numeric",
-                                year: "numeric",
-                              })}{" "}
-                              à{" "}
-                              {new Date(
-                                match.START_TIME * 1000
-                              ).toLocaleTimeString("fr-FR", {
-                                hour: "numeric",
-                                minute: "numeric",
-                              })}
-                            </p>
-                            <div className="font-medium text-xs text-center current-score-foot m-4">
+
+                          {/* Score */}
+                          <div className="flex flex-col items-center justify-center w-20">
+                            <div className="font-medium text-xs text-center current-score-foot">
                               {match.HOME_SCORE_CURRENT} -{" "}
                               {match.AWAY_SCORE_CURRENT}
                             </div>
-                            <p className="text-gray-400 text-xs font-light">
-                              {match.STAGE_TYPE === "FINISHED"
-                                ? "Terminé"
-                                : "En cours"}
-                            </p>
                           </div>
+
+                          {/* Équipe à l'extérieur */}
                           <div
-                            className="flex items-center w-1/4 justify-end cursor-pointer"
+                            className="flex items-center w-40 justify-end cursor-pointer"
                             onClick={() => handleTeamClick(match.AWAY_NAME)}
                           >
                             <p
-                              className={`mr-2 text-sm ${
+                              className={`mr-2 text-xs ${
                                 match.HOME_SCORE_CURRENT <
                                 match.AWAY_SCORE_CURRENT
                                   ? "font-extrabold"
@@ -192,13 +196,20 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                             </p>
                             <Image
                               src={match.AWAY_IMAGES[0]}
-                              width={30}
-                              height={30}
+                              width={20}
+                              height={20}
                               alt="Away Player"
                               className="rounded-full"
                             />
                           </div>
                         </div>
+
+                        {/* Statut du match */}
+                        <p className="text-gray-400 text-xs font-light text-center">
+                          {match.STAGE_TYPE === "FINISHED"
+                            ? "Terminé"
+                            : "En cours"}
+                        </p>
                       </div>
                     ))}
                   </div>

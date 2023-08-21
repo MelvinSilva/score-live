@@ -1,10 +1,9 @@
-import Footer from "./components/Footer";
 import Header from "./components/Header";
 import SportSelector from "./components/SportSelector";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Sen } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const sen = Sen({ weight: ["700", "400"], subsets: ["latin"] });
 
 export const metadata = {
   title: "Score Live",
@@ -18,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body className={`${inter.className} w-full mx-auto bg-gray-100`}>
+      <body className={`${sen.className} w-full mx-auto bg-gray-100`}>
         <Header />
         <div>
           <SportSelector />

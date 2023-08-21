@@ -3,10 +3,8 @@ import React from "react";
 export default function SkeletonCardTennis() {
   return (
     <div className="w-full mx-auto bg-gray-100 py-6 animate-pulse">
-      <br />
-      <br />
       <div className="flex items-center justify-center mb-6">
-        <div className="rounded-full bg-gray-300 w-10 h-10 mr-2"></div>
+        <div className="rounded-full bg-gray-300 w-6 h-6 mr-2"></div>
         <div className="h-4 bg-gray-300 rounded w-24"></div>
       </div>
 
@@ -21,7 +19,7 @@ export default function SkeletonCardTennis() {
 
       <div className="bg-gray-100 p-4 lg:mx-60">
         <div className="space-y-6 rounded-lg">
-          {[...Array(3)].map((_, i) => (
+          {[...Array(2)].map((_, i) => (
             <div key={i} className="p-4 rounded-lg bg-white">
               <div className="flex items-center justify-between">
                 <div className="rounded-full bg-gray-300 w-14 h-14 mr-4"></div>
