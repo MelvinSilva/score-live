@@ -15,9 +15,9 @@ export default function Home() {
       localStorage.setItem("loaderTime", Date.now().toString());
     } else {
       const currentTime = Date.now();
-      const twoHours = 2 * 60 * 60 * 1000;
+      const twentyMinutes = 20 * 60 * 1000;
 
-      if (currentTime - Number(lastShown) > twoHours) {
+      if (currentTime - Number(lastShown) > twentyMinutes) {
         setIsLoading(true);
         localStorage.setItem("loaderTime", Date.now().toString());
       }
