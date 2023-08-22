@@ -171,6 +171,7 @@ const FootballList = () => {
             {renderCountryChampionships()}
           </tbody>
         </table>
+        <br />
       </div>
     </div>
   );

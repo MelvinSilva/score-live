@@ -99,6 +99,7 @@ const ClassementTable: React.FC<Props> = ({ teams }) => {
           ))}
         </tbody>
       </table>
+      <br />
     </div>
   );
 };

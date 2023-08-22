@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div>
       <br />
-      <footer className="flex flex-col items-center justify-center w-full py-4 bg-gradient-to-r from-denim-600 to-denim-900 shadow-md">
+      <footer className="flex flex-col items-center justify-center w-full py-4 bg-gradient-to-r from-denim-600 to-denim-900 shadow-md mb-12 lg:mb-0 xl:mb-0 2xl:mb-0 ">
         <p className="text-gray-200">
           © 2023 Sporty Score - Tous droits réservés
         </p>

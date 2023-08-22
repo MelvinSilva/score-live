@@ -201,6 +201,7 @@ const TennisList = () => {
             {renderCountryChampionships()}
           </tbody>
         </table>
+        <br />
       </div>
     </div>
   );

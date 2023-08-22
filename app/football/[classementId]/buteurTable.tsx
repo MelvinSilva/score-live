@@ -97,6 +97,7 @@ const ButeursTable: React.FC<Props> = ({ meilleursButeurs }) => {
             </tbody>
           </table>
         )}
+        <br />
       </div>
     </div>
   );
