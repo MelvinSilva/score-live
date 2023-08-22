@@ -333,6 +333,8 @@ export default function ResultTennisTournament({
       ) : (
         <p>Aucun événement disponible</p>
       )}
+      <br />
+      <br />
     </div>
   );
 }

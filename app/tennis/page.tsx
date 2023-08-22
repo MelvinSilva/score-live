@@ -202,6 +202,8 @@ const TennisList = () => {
           </tbody>
         </table>
         <br />
+        <br />
+        <br />
       </div>
     </div>
   );

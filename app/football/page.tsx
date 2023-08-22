@@ -172,6 +172,8 @@ const FootballList = () => {
           </tbody>
         </table>
         <br />
+        <br />
+        <br />
       </div>
     </div>
   );
