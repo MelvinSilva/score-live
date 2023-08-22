@@ -56,6 +56,7 @@ export default function ActualityList() {
                 src={actu.ARTICLE.IMAGES[1].URL}
                 width={100}
                 height={100}
+                key="article"
                 alt={actu.ARTICLE.IMAGES[1].ALT_TEXT}
               />
               <div className="flex flex-col justify-between p-2 leading-normal">
