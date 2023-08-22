@@ -1,4 +1,5 @@
 import ActualityList from "./actu/page";
+import Footer from "./components/Footer";
 import TwitterFeed from "./components/TwitterFeed";
 
 export default function Home() {
@@ -6,7 +7,6 @@ export default function Home() {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <br />
       {/*       <header className="w-full mx-auto mb-12">
         <h1 className="text-xl font-bold text-center">
           Bienvenue sur SPORTY SCORE
@@ -20,6 +20,7 @@ export default function Home() {
         {/* Ici on inclut le composant ActualityList pour afficher les 5 dernières actualités */}
         <ActualityList limit={5} />
       </main>
+      <Footer />
     </div>
   );
 }

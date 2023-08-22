@@ -125,7 +125,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                   )}
                   <div className="space-y-2 rounded-lg">
                     {(groupedResults[round] || []).map((match, index) => (
-                      <div key={index} className="p-2 rounded-lg bg-white">
+                      <div key={index} className="p-1 rounded-lg bg-white">
                         {/* Ligne de date et d'heure */}
                         <p className="text-gray-400 text-xs font-light text-center mb-2">
                           {new Date(match.START_TIME * 1000).toLocaleDateString(
@@ -160,7 +160,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                               className="rounded-full"
                             />
                             <p
-                              className={`ml-2 text-xs ${
+                              className={`ml-1 text-sm ${
                                 match.HOME_SCORE_CURRENT >
                                 match.AWAY_SCORE_CURRENT
                                   ? "font-extrabold"
@@ -173,8 +173,8 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
 
                           {/* Score */}
                           <div className="flex flex-col items-center justify-center w-20">
-                            <div className="font-medium text-xs text-center current-score-foot">
-                              {match.HOME_SCORE_CURRENT} -{" "}
+                            <div className="text-md text-center current-score-foot">
+                              {match.HOME_SCORE_CURRENT}-
                               {match.AWAY_SCORE_CURRENT}
                             </div>
                           </div>
@@ -185,10 +185,10 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                             onClick={() => handleTeamClick(match.AWAY_NAME)}
                           >
                             <p
-                              className={`mr-2 text-xs ${
+                              className={`mr-1 text-sm ${
                                 match.HOME_SCORE_CURRENT <
                                 match.AWAY_SCORE_CURRENT
-                                  ? "font-extrabold"
+                                  ? "font-bold"
                                   : ""
                               }`}
                             >
