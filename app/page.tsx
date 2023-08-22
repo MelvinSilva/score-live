@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import ActualityList from "./actu/page";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
+import ActualityList from "./actu/page";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,8 +37,8 @@ export default function Home() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto">
-      <main>
+    <div>
+      <main className="max-w-5xl mx-auto">
         <ActualityList limit={6} />
       </main>
       <Footer />

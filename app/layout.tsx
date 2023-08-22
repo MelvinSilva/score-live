@@ -23,9 +23,6 @@ export default function RootLayout({
           <SportSelector />
         </div>
         {children}
-        <br />
-        <br />
-        <br />
       </body>
     </html>
   );
