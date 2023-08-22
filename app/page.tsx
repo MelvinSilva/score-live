@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div>
       <main className="max-w-5xl mx-auto">
-        <ActualityList limit={6} />
+        <ActualityList />
       </main>
       <Footer />
     </div>

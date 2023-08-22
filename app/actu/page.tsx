@@ -4,15 +4,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import SkeletonListActu from "../components/SkeletonListActu";
 
-type ActualityListProps = {
-  limit?: number;
-};
-
-const ActualityList: React.FC<ActualityListProps> = ({ limit }) => {
+export default function ActualityList() {
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<any[]>([]); // Utilisez un tableau vide pour stocker les actualités
-
-  const displayedData = limit ? data.slice(0, limit) : data;
 
   useEffect(() => {
     const fetchActuList = async () => {
@@ -51,7 +45,7 @@ const ActualityList: React.FC<ActualityListProps> = ({ limit }) => {
         LES DERNIERES ACTUALITÉS
       </p>
       <div className="max-w-5xl mx-auto">
-        {displayedData.map((actu) => (
+        {data.map((actu) => (
           <a key={actu.ID} href={`actu/${actu.ID}`}>
             <div
               key={actu.ID}
@@ -78,6 +72,4 @@ const ActualityList: React.FC<ActualityListProps> = ({ limit }) => {
       </div>
     </div>
   );
-};
-
-export default ActualityList;
+}
