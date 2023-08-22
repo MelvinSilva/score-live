@@ -3,7 +3,7 @@ import SportSelector from "./components/SportSelector";
 import "./globals.css";
 import { Sen } from "next/font/google";
 
-const sen = Sen({ weight: ["700", "400"], subsets: ["latin"] });
+const sen = Sen({ weight: ["800", "700", "400"], subsets: ["latin"] });
 
 export const metadata = {
   title: "Score Live",

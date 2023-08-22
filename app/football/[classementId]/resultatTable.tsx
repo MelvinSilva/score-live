@@ -127,7 +127,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                     {(groupedResults[round] || []).map((match, index) => (
                       <div key={index} className="p-1 rounded-lg bg-white">
                         {/* Ligne de date et d'heure */}
-                        <p className="text-gray-400 text-xs font-light text-center mb-2">
+                        <p className="text-gray-400 text-xs sm:text-md font-light text-center mb-2">
                           {new Date(match.START_TIME * 1000).toLocaleDateString(
                             "fr-FR",
                             {
@@ -146,7 +146,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                           )}
                         </p>
 
-                        <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center justify-around mb-2">
                           {/* Équipe à domicile */}
                           <div
                             className="flex items-center w-40 cursor-pointer"
@@ -160,11 +160,11 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                               className="rounded-full"
                             />
                             <p
-                              className={`ml-1 text-sm ${
+                              className={`ml-2 sm:text-xl  xs:text-sm ${
                                 match.HOME_SCORE_CURRENT >
                                 match.AWAY_SCORE_CURRENT
-                                  ? "font-extrabold"
-                                  : ""
+                                  ? "font-extrabold text-green-700"
+                                  : "text-gray-700"
                               }`}
                             >
                               {match.HOME_NAME}
@@ -172,8 +172,8 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                           </div>
 
                           {/* Score */}
-                          <div className="flex flex-col items-center justify-center w-20">
-                            <div className="text-md text-center current-score-foot">
+                          <div className="flex flex-col items-center justify-center w-20 text-gray-700">
+                            <div className="text-md sm:text-xl text-center current-score-foot">
                               {match.HOME_SCORE_CURRENT}-
                               {match.AWAY_SCORE_CURRENT}
                             </div>
@@ -185,11 +185,11 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                             onClick={() => handleTeamClick(match.AWAY_NAME)}
                           >
                             <p
-                              className={`mr-1 text-sm ${
+                              className={`mr-2 sm:text-xl xs:text-sm ${
                                 match.HOME_SCORE_CURRENT <
                                 match.AWAY_SCORE_CURRENT
-                                  ? "font-bold"
-                                  : ""
+                                  ? "font-extrabold text-green-700"
+                                  : "text-gray-700"
                               }`}
                             >
                               {match.AWAY_NAME}
@@ -205,7 +205,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                         </div>
 
                         {/* Statut du match */}
-                        <p className="text-gray-400 text-xs font-light text-center">
+                        <p className="text-gray-400 text-xs sm:text-md font-light text-center">
                           {match.STAGE_TYPE === "FINISHED"
                             ? "Terminé"
                             : "En cours"}

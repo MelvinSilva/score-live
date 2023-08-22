@@ -93,6 +93,8 @@ export default function DetailsActuality({
       ) : (
         <p>Chargement...</p>
       )}
+      <br />
+      <br />
     </div>
   );
 }
