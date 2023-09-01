@@ -214,6 +214,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                     ))}
                   </div>
                   <br />
+                  <br />
                 </div>
               )
           )}

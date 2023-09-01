@@ -39,6 +39,7 @@ export default function Home() {
   return (
     <div>
       <main className="max-w-5xl mx-auto">
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <ActualityList />
       </main>
       <Footer />

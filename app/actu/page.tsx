@@ -71,6 +71,8 @@ export default function ActualityList() {
           </a>
         ))}
       </div>
+      <br />
+      <br />
     </div>
   );
 }
