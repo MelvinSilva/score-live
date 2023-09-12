@@ -147,7 +147,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                         </p>
 
                         <div className="flex items-center justify-around mb-2">
-                          {/* Équipe à domicile */}
+                          {/* //////////////// Équipe à domicile //////////////// */}
                           <div
                             className="flex items-center w-40 cursor-pointer"
                             onClick={() => handleTeamClick(match.HOME_NAME)}
@@ -160,10 +160,10 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                               className="rounded-full"
                             />
                             <p
-                              className={`ml-2 sm:text-xl  xs:text-sm ${
+                              className={`truncate ml-2 sm:text-xl  xs:text-sm ${
                                 match.HOME_SCORE_CURRENT >
                                 match.AWAY_SCORE_CURRENT
-                                  ? "font-extrabold text-green-700"
+                                  ? "font-bold text-denim-700"
                                   : "text-gray-700"
                               }`}
                             >
@@ -171,7 +171,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                             </p>
                           </div>
 
-                          {/* Score */}
+                          {/* //////////////// Score //////////////// */}
                           <div className="flex flex-col items-center justify-center w-20 text-gray-700">
                             <div className="text-md sm:text-xl text-center current-score-foot">
                               {match.HOME_SCORE_CURRENT}-
@@ -179,16 +179,16 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                             </div>
                           </div>
 
-                          {/* Équipe à l'extérieur */}
+                          {/* //////////////// Équipe à l'extérieur //////////////// */}
                           <div
                             className="flex items-center w-40 justify-end cursor-pointer"
                             onClick={() => handleTeamClick(match.AWAY_NAME)}
                           >
                             <p
-                              className={`mr-2 sm:text-xl xs:text-sm ${
+                              className={`truncate mr-2 sm:text-xl xs:text-sm ${
                                 match.HOME_SCORE_CURRENT <
                                 match.AWAY_SCORE_CURRENT
-                                  ? "font-extrabold text-green-700"
+                                  ? "font-bold text-denim-700"
                                   : "text-gray-700"
                               }`}
                             >
@@ -204,7 +204,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
                           </div>
                         </div>
 
-                        {/* Statut du match */}
+                        {/* //////////////// Statut du match //////////////// */}
                         <p className="text-gray-400 text-xs sm:text-md font-light text-center">
                           {match.STAGE_TYPE === "FINISHED"
                             ? "Terminé"

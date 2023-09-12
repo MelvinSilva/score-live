@@ -2,17 +2,20 @@ import React from "react";
 
 export default function SkeletonResultatTable() {
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
+    <div className="w-screen h-screen flex justify-center">
+      <br />
+      <br />
+      <br />
       <div className="w-full mx-auto bg-gray-100 py-6 animate-pulse lg:mx-60 p-4">
         <div className="space-y-2 rounded-lg">
-          {Array.from({ length: 10 }).map((_, index) => (
+          {Array.from({ length: 6 }).map((_, index) => (
             <div key={index} className="p-2 rounded-lg bg-white">
               <div className="flex items-center justify-between">
                 {/* Bloc d'équipe à domicile */}
                 <div className="flex items-center w-1/4 cursor-pointer">
                   <div
-                    className="animate-pulse rounded-full bg-gray-300"
-                    style={{ width: 30, height: 30 }}
+                    className="animate-pulse rounded-xs bg-gray-300"
+                    style={{ width: 20, height: 20 }}
                   />
                   <div className="ml-2 animate-pulse bg-gray-300 text-transparent">
                     _______
@@ -41,8 +44,8 @@ export default function SkeletonResultatTable() {
                     _______
                   </div>
                   <div
-                    className="animate-pulse rounded-full bg-gray-300"
-                    style={{ width: 30, height: 30 }}
+                    className="animate-pulse rounded-xs bg-gray-300"
+                    style={{ width: 20, height: 20 }}
                   />
                 </div>
               </div>

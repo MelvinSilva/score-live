@@ -33,17 +33,17 @@ const sports: SportOption[] = [
     available: true,
   },
   {
-    value: "Basketball",
-    label: <IoBasketball />,
-    text: "Basket",
-    path: "/basket",
-    available: true,
-  },
-  {
     value: "Rugby",
     label: <IoAmericanFootball />,
     text: "Rugby",
     path: "/rugby",
+    available: true,
+  },
+  {
+    value: "Basketball",
+    label: <IoBasketball />,
+    text: "Basket",
+    path: "/basket",
     available: true,
   },
   {

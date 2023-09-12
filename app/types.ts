@@ -95,3 +95,20 @@ export interface MatchResult {
   STAGE: string;
   START_TIME: number;
 }
+
+// RUGBY //
+export interface RugbyResult {
+  NAME: string;
+  TOURNAMENT_IMAGE: string;
+  EVENTS: {
+    AWAY_IMAGES: any;
+    STAGE_TYPE: string;
+    HOME_IMAGES: any;
+    AWAY_SCORE_CURRENT: string;
+    HOME_SCORE_CURRENT: string;
+    AWAY_NAME: string;
+    START_TIME: number;
+    EVENT_ID: string;
+    HOME_NAME: string;
+  }[];
+}
