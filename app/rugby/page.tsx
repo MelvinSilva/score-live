@@ -143,6 +143,9 @@ export default function RugbyList() {
           </div>
         </div>
       )}
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

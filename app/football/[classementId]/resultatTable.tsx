@@ -105,7 +105,7 @@ export const ResultatsTable: React.FC<ResultatsTableProps> = ({
             <select
               onChange={handleRoundChange}
               value={selectedRound || ""}
-              className="my-2 block w-2/6 rounded-md text-gray-600 text-sm bg-white p-1"
+              className="my-2 block w-2/6 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-100 text-denim-600 text-sm bg-white p-1 "
             >
               {Object.keys(groupedResults)
                 .sort(sortRounds)

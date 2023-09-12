@@ -4,8 +4,9 @@ export default function BasketballList() {
   return (
     <div>
       <br />
-      <p className="text-center text-gray-700">
-        Le Basket est indisponible pour le moment.
+      <p className="text-center text-gray-700 m-1">
+        Le Basket n'est plus disponible depuis l'élimination de la France au
+        premier tour du mondial de basket 2023...
       </p>
     </div>
   );

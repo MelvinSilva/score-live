@@ -95,6 +95,7 @@ export default function DetailsActuality({
       )}
       <br />
       <br />
+      <br />
     </div>
   );
 }

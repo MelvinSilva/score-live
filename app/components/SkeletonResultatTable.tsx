@@ -8,7 +8,7 @@ export default function SkeletonResultatTable() {
       <br />
       <div className="w-full mx-auto bg-gray-100 py-6 animate-pulse lg:mx-60 p-4">
         <div className="space-y-2 rounded-lg">
-          {Array.from({ length: 6 }).map((_, index) => (
+          {Array.from({ length: 5 }).map((_, index) => (
             <div key={index} className="p-2 rounded-lg bg-white">
               <div className="flex items-center justify-between">
                 {/* Bloc d'équipe à domicile */}

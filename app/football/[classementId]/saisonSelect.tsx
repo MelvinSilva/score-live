@@ -17,7 +17,7 @@ const SaisonSelect: React.FC<Props> = ({
     <div className="flex justify-center">
       <select
         id="season-select"
-        className="w-30 text-sm py-1 px-2 rounded-lg bg-white border-denim-600 border focus:outline-none focus:ring-1 focus:ring-indigo-500 text-denim-600"
+        className="w-30 text-sm py-1 px-2 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-indigo-100 text-denim-600"
         value={selectedSeasonId || ""}
         onChange={(e) => onSeasonChange(e.target.value)}
       >
