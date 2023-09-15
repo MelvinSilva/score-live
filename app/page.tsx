@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 import ActualityList from "./actu/page";
+import Head from "next/head";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -40,6 +41,10 @@ export default function Home() {
     <div>
       <main className="max-w-5xl mx-auto">
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <Head>
+        <title>Sporty Score - Accueil</title>
+        <meta name="description" content="Résultats et actualité sportive" />
+      </Head>
         <ActualityList />
       </main>
       <Footer />
